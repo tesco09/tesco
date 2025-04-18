@@ -1,0 +1,4 @@
+# robots.txt for WingedX App
+User-agent: *
+Allow: /
+Sitemap: https://wingedx.com/sitemap.xml
