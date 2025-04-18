@@ -38,6 +38,7 @@ import UserDetails from './components/UserDetails';
 import Splash from './Pages/Splash';
 import AdminLogin from './Pages/AdminLogin';
 import AdminRoute from './Pages/AdminRoute';
+import UpdatePassword from './components/UpdatePassword';
 
 function App() {
 
@@ -91,6 +92,7 @@ function App() {
             <Route path="/admin-panel" element={<AdminPanel />} />
             <Route path="/splash/:id" element={<Splash />} />
             <Route path="/user-detail/:id" element={<UserDetails />} />
+            <Route path="/admin-password" element={<UpdatePassword />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -1,6 +1,6 @@
 
-export const BaseUrl = "https://tesco-api-psi.vercel.app";
-// export const BaseUrl = "http://localhost:4000";
+// export const BaseUrl = "https://tesco-api-psi.vercel.app";
+export const BaseUrl = "http://localhost:4000";
 
 const id = localStorage.getItem('id');
 

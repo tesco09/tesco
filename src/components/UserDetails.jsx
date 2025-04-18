@@ -3,6 +3,7 @@ import Modal from "../components/ModalShow";
 import { BaseUrl } from "../Assets/Data";
 import { useNavigate, useParams } from "react-router-dom";
 import LoadingSpinner from "./LoadingSpinner";
+import ToggleSwitch from "./ToggleSwitch";
 
 function UserDetails() {
 
@@ -17,6 +18,7 @@ function UserDetails() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [add, setAdd] = useState(null);
   const [deduct, setDeduct] = useState(null);
+  const [selected, setSelected] = useState('Balance');
 
   const openModal = (type) => {
     setModalType(type);
@@ -55,7 +57,19 @@ function UserDetails() {
 
   const handleAddBalance = async () => {
 
-    const newBalance = await parseFloat(user.balance) + parseFloat(add);
+    let newBalance = 0;
+    if (selected === 'Balance') {
+      newBalance = await parseFloat(user.balance) + parseFloat(add);
+    } else if (selected === 'Deposit') {
+      newBalance = await parseFloat(user.deposit) + parseFloat(add);
+    }
+    let data = {};
+    if (selected === 'Balance') {
+      data = { balance: newBalance, }
+    } else if (selected === 'Deposit') {
+      data = { deposit: newBalance, }
+    }
+
 
     if (add < 0) {
       alert("Please enter a valid amount to add.");
@@ -69,15 +83,12 @@ function UserDetails() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          balance: newBalance,
-        }),
+        body: JSON.stringify(data),
       });
 
       const result = await response.json();
       if (response.ok) {
         alert('Balance Added successfully!');
-
       }
     } catch (error) {
       console.error('Error Adding Balance:', error);
@@ -92,7 +103,19 @@ function UserDetails() {
 
   const handleDeductBalance = async () => {
 
-    const newBalance = await parseFloat(user.balance) - parseFloat(deduct);
+    let newBalance = 0;
+
+    if (selected === 'Balance') {
+      newBalance = await parseFloat(user.balance) - parseFloat(deduct);
+    } else if (selected === 'Deposit') {
+      newBalance = await parseFloat(user.deposit) - parseFloat(deduct);
+    }
+    let data = {};
+    if (selected === 'Balance') {
+      data = { balance: newBalance, }
+    } else if (selected === 'Deposit') {
+      data = { deposit: newBalance, }
+    }
 
     if (deduct < 0) {
       alert("Please enter a valid amount to add.");
@@ -106,9 +129,7 @@ function UserDetails() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          balance: newBalance,
-        }),
+        body: JSON.stringify(data),
       });
 
       const result = await response.json();
@@ -160,6 +181,11 @@ function UserDetails() {
     } finally {
       closeModal();
     }
+  };
+
+  const handleToggleChange = (value) => {
+    console.log('Selected:', value); // either 'Balance' or 'Deposit'
+    setSelected(value);
   };
 
 
@@ -237,6 +263,7 @@ function UserDetails() {
             {modalType === "addBalance" && (
               <div>
                 <h2 className="text-2xl font-bold mb-4">Add Balance</h2>
+                <ToggleSwitch onChange={handleToggleChange} />
                 <input
                   value={add}
                   onChange={(e) => setAdd(e.target.value)}
@@ -255,6 +282,7 @@ function UserDetails() {
             {modalType === "deductBalance" && (
               <div>
                 <h2 className="text-2xl font-bold mb-4">Deduct Balance</h2>
+                <ToggleSwitch onChange={handleToggleChange} />
                 <input
                   value={deduct}
                   onChange={(e) => setDeduct(e.target.value)}

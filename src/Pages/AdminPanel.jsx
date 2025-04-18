@@ -114,7 +114,7 @@ function AdminPanel() {
         return (
             <div
                 className={`fixed top-0 left-0 h-full bg-gray-800 text-white w-64 transform ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
-                    } transition-transform duration-300 lg:translate-x-0 overflow-scroll`}
+                    } transition-transform duration-300 lg:translate-x-0 lg:block overflow-scroll`}
             >
                 <div className="flex items-center justify-between px-4 py-4 border-b border-gray-700">
                     <h2 className="text-xl font-bold">Admin Panel</h2>
@@ -195,15 +195,6 @@ function AdminPanel() {
                                         className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
                                     >
                                         View Promo Codes
-                                    </li>
-                                    <li
-                                        onClick={() => {
-                                            setSelectedTab("AddPromoCode");
-                                            setSidebarOpen(false);
-                                        }}
-                                        className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
-                                    >
-                                        Add Promo Code
                                     </li>
                                 </ul>
                             )}
@@ -364,6 +355,13 @@ function AdminPanel() {
                                 </ul>
                             )}
                         </li>
+                        <a href="/admin-password" className="no-underline text-white">
+                            <li
+                                className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
+                            >
+                                Update Password
+                            </li>
+                        </a>
                     </ul>
                 </nav>
             </div>
@@ -405,6 +403,19 @@ function AdminPanel() {
             },
         ],
     };
+
+    useEffect(() => {
+        const handlePopState = () => {
+            window.location.reload(); // Reloads the current page
+        };
+
+        window.addEventListener("popstate", handlePopState);
+
+        return () => {
+            window.removeEventListener("popstate", handlePopState);
+        };
+    }, []);
+
 
     const withdrawalsChartData = {
         labels: ["Pending", "Total"],
@@ -491,19 +502,28 @@ function AdminPanel() {
 
     return (
         <div className="flex h-screen">
+            {/* Sidebar */}
             <Sidebar />
 
-            <div className={`flex-1 flex flex-col bg-gray-100 transition-all duration-300 ${sidebarOpen ? "ml-64" : "ml-0"}`}>
+            {/* Main Content */}
+            <div
+                className={`flex-1 flex flex-col bg-gray-100 transition-all duration-300 ${sidebarOpen ? "ml-64" : "ml-0"
+                    }`}
+            >
                 {/* Top Bar */}
-                <div className="flex items-center justify-between bg-white px-4 py-4 shadow-md ">
-                    <h1 className="text-xl font-bold md:text-center md:w-[60%]">Admin Panel</h1>
+                <div className="flex items-center justify-between bg-white px-4 py-2 shadow-md">
+                    <h1 className="text-lg md:text-xl font-bold md:text-center md:w-[60%]">
+                        Admin Panel
+                    </h1>
                     <div className="flex flex-row items-center">
+                        {/* Notification Icon */}
                         <button
                             onClick={() => {
                                 setSelectedTab("AdminNotification");
                                 setSidebarOpen(false);
                             }}
-                            className="relative mr-4">
+                            className="relative mr-4"
+                        >
                             <FontAwesomeIcon
                                 icon={faBell}
                                 className="text-gray-800 text-[22px] cursor-pointer"
@@ -512,34 +532,41 @@ function AdminPanel() {
                                 {dashboardData.notifications}
                             </span>
                         </button>
-                        <button className="text-gray-800 lg:hidden" onClick={toggleSidebar}>
+
+                        {/* Sidebar Toggle Button */}
+                        <button
+                            className="text-gray-800 lg:hidden"
+                            onClick={toggleSidebar}
+                        >
                             <FontAwesomeIcon icon={faBars} />
                         </button>
                     </div>
                 </div>
 
                 {/* Dashboard Content */}
-                <div className="p-4">
+                <div className="md:p-4 p-2 pt-1">
                     {loading ? (
                         <LoadingSpinner />
                     ) : (
                         <>
-                            {selectedTab === 'Dashboard' && <DashBoard />}
-                            {selectedTab === 'TotalUsers' && <TotalUsers />}
-                            {selectedTab === 'ActiveUsers' && <ActiveUsers />}
-                            {selectedTab === 'PendingWithdraw' && <PendingWithdraw />}
-                            {selectedTab === 'TotalWithdraw' && <TotalWithdraw />}
-                            {selectedTab === 'PendingDeposit' && <PendingDeposit />}
-                            {selectedTab === 'TotalDeposit' && <TotalDeposit />}
-                            {selectedTab === 'Plans' && <Plans />}
-                            {selectedTab === 'PromoCode' && <PromoCode />}
-                            {selectedTab === 'RejectedWithdraw' && <RejectedWithdraw />}
-                            {selectedTab === 'ApprovedWithdraw' && <ApprovedWithdraw />}
-                            {selectedTab === 'RejectedDeposit' && <RejectedDeposit />}
-                            {selectedTab === 'ApprovedDeposit' && <ApprovedDeposit />}
-                            {selectedTab === 'UnverifiedUser' && <UnverifiedUsers />}
-                            {selectedTab === 'Commission' && <Commission />}
-                            {selectedTab === 'AdminNotification' && <AdminNotification />}
+                            {selectedTab === "Dashboard" && <DashBoard />}
+                            {selectedTab === "TotalUsers" && <TotalUsers />}
+                            {selectedTab === "ActiveUsers" && <ActiveUsers />}
+                            {selectedTab === "PendingWithdraw" && <PendingWithdraw />}
+                            {selectedTab === "TotalWithdraw" && <TotalWithdraw />}
+                            {selectedTab === "PendingDeposit" && <PendingDeposit />}
+                            {selectedTab === "TotalDeposit" && <TotalDeposit />}
+                            {selectedTab === "Plans" && <Plans />}
+                            {selectedTab === "PromoCode" && <PromoCode />}
+                            {selectedTab === "RejectedWithdraw" && <RejectedWithdraw />}
+                            {selectedTab === "ApprovedWithdraw" && <ApprovedWithdraw />}
+                            {selectedTab === "RejectedDeposit" && <RejectedDeposit />}
+                            {selectedTab === "ApprovedDeposit" && <ApprovedDeposit />}
+                            {selectedTab === "UnverifiedUser" && <UnverifiedUsers />}
+                            {selectedTab === "Commission" && <Commission />}
+                            {selectedTab === "AdminNotification" && (
+                                <AdminNotification />
+                            )}
                         </>
                     )}
                 </div>

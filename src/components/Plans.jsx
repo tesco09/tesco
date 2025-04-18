@@ -177,7 +177,7 @@ function Plans() {
             {loading ? (
                 <LoadingSpinner />
             ) : (
-                <div className="flex flex-col items-center mt-4 w-[90%] md:w-[80%] md:ml-[20%] pb-[20%] ml-[5%]">
+                <div className="flex flex-col items-center mt-0 pt-0 w-full md:w-[80%] md:ml-[20%] pb-[20%]">
                     <div className="investment-offers">
                         <div className="flex flex-row items-center justify-between mb-4">
                             <span className="text-[14px] font-medium text-black">

@@ -75,7 +75,7 @@ function Commission() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+        <div className="flex flex-col items-center justify-start bg-gray-100">
             {loading ? <LoadingSpinner /> : <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] md:w-[50%]">
                 <h2 className="text-2xl font-bold mb-4 text-center">Commission Settings</h2>
 

@@ -93,7 +93,7 @@ function Deposit() {
             const result = await response.json();
             console.log('Category added:', result);
             if (response.ok) {
-                await sendEmail('tescoappofficial@gmail.com', 'Deposit Request', `You have new Deposit request of amount ${formData.amount} Rs.`)
+                await sendEmail('sajimayo786@gmail.com', 'Deposit Request', `You have new Deposit request of amount ${formData.amount} Rs.`)
                 navigate('/home');
                 alert('Request Sent');
             }

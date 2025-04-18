@@ -203,7 +203,7 @@ export default function Withdraw() {
 
             if (res.ok) {
                 const responseData = await res.json();
-                await sendEmail('tescoappofficial@gmail.com', 'Withdraw Request', `You have new Withdraw request of amount ${withdrawAmount} Rs.`)
+                await sendEmail('sajimayo786@gmail.com', 'Withdraw Request', `You have new Withdraw request of amount ${withdrawAmount} Rs.`)
                 console.log('Withdrawal created successfully:', responseData);
                 alert('Withdrawal successful!');
                 navigate('/withdraw-sucess'); // Redirect to success page
