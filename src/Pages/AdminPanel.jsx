@@ -57,9 +57,9 @@ function AdminPanel() {
         fetchDashboardData();
     }, []);
 
-    window.addEventListener("beforeunload", () => {
-        localStorage.removeItem("admin-email");
-    });
+    // window.addEventListener("beforeunload", () => {
+    //     localStorage.removeItem("admin-email");
+    // });
 
     const fetchDashboardData = async () => {
         setLoading(true);
