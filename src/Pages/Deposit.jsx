@@ -5,6 +5,7 @@ import { faCopy } from '@fortawesome/free-solid-svg-icons';
 import { BaseUrl, CLOUDINARY_URL, sendEmail } from '../Assets/Data';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { useNavigate } from 'react-router-dom';
+import Modal from '../components/ModalChart';
 
 function Deposit() {
     const navigate = useNavigate();
@@ -15,6 +16,7 @@ function Deposit() {
         amount: null,
         paymentProof: null,
     });
+    const [openModal, setOpenModal] = useState(true);
     const [uploading, setUploading] = useState(false);
     const banks = ['Alfalah', 'Easypaisa', 'Jazzcash', 'HBL', 'Meezan Bank', 'MCB', 'NIB Bank', 'Standard Chartered Bank', 'UBL'];
 
@@ -230,6 +232,22 @@ function Deposit() {
                     <button type="submit" className="submit-button">Deposit</button>
                 </form>
             </div>}
+
+            <Modal isOpen={openModal} onClose={() => { setOpenModal(false); }}>
+                <div className="max-w-xl flex flex-col items-center mx-auto p-2">
+                    <h2 className="text-xl font-bold text-center mb-4 text-[#347928]">DEPOSIT INSTRUCTION🚨</h2>
+                    <ol dir="rtl" className="list-decimal space-y-2 text-right text-black text-sm font-[JameelNoori] ps-2 rtl:ps-0 rtl:pe-5">
+                        <li>ایک بار ڈپازٹ کی درخواست بھیجنے کے بجائے، بار بار درخواست نہ بھیجیں۔</li>
+                        <li>ڈیپازٹ اسکرین شاٹ آدھے گھنٹے سے پہلے جمع ہونا چاہیے۔</li>
+                        <li>اگر آپ کسی وجہ سے تاخیر کرتے ہیں، تو آپ کی جمع شدہ رقم منظور نہیں کی جائے گی۔</li>
+                        <li>جمع کرتے وقت اس بات کو یقینی بنائیں کہ آپ کی پیمنٹ کا سکرین شاٹ مکمل ہونا چاہیے۔</li>
+                        <li>اسکرین شاٹ واضح طور پر نظر آنا چاہیے کہ یہ کس کو بھیجا گیا تھا اور کس وقت۔</li>
+                        <li>اس بات کو یقینی بنائیں کہ اسکرین شاٹ پر کسی بھی قسم کی کوئی ترمیم نہیں ہے اور صحیح نمبر لکھیں جو آپ نے بھیجا ہے۔</li>
+                    </ol>
+
+                    <p className="mt-4 text-center text-black font-semibold">Thank you Tesco Community</p>
+                </div>
+            </Modal>
         </>
     );
 }

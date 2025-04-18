@@ -82,6 +82,10 @@ function Home() {
         setter((prev) => !prev);
     };
 
+    const chatOnWhatsapp = ()=>{
+        window.open("https://chat.whatsapp.com/Ghj7VOY8bRm9qWcR3yQ0sn");
+    }
+
     const renderBalanceCard = (label, value, isHidden, toggleVisibility) => (
         <div className="user-info flex flex-col items-center p-2 border border-gray-600 rounded-md w-[70%]">
             <p className="text-black text-[12px]">{label}</p>
@@ -233,7 +237,7 @@ function Home() {
                     </ol>
 
                     <p className="mt-4 text-center text-black font-semibold">Thank you Tesco Community</p>
-                    <button type="button" className="flex flex-row items-center justify-center w-full h-[50px] rounded-md bg-[#347928] mt-2 mb-2">
+                    <button onClick={chatOnWhatsapp} type="button" className="flex flex-row items-center justify-center w-full h-[50px] rounded-md bg-[#347928] mt-2 mb-2">
                         <span className="text-white text-[14px] font-medium ml-2 text-center w-full">Chat with us</span>
                     </button>
                 </div>

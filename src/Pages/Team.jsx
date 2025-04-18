@@ -61,7 +61,7 @@ export default function Team() {
             {/* <span className="font-bold text-[#347928] mt-3">Invitaion Code</span>
             <h2 className="font-[bold] text-[#347928]  mt-1">{userData?.generatedId}</h2> */}
             <div className="flex flex-row items-center justify-between w-[90%]">
-                <span className='text-[14px] text-gray-500 font-medium p-[3px] line-clamp-2 w-[80%]'>https://tesco-rho.vercel.app/signup/{userData?.generatedId}</span>
+                <span className='text-[14px] text-gray-500 font-medium p-[3px] line-clamp-2 w-[80%]'>https://www.tesco-network.com/signup/{userData?.generatedId}</span>
                 <button className="w-[20%] text-center bg-gray-100 p-[4px] border-[1.5px] text-gray-500  rounded-full text-[12px] font-bold" onClick={() => handleCopy(`https://tesco-rho.vercel.app/signup/${userData?.generatedId}`)}>
                     {/* <FontAwesomeIcon icon={faCopy} className='text-white text-[14px]' /> */}
                     Copy

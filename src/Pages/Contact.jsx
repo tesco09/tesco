@@ -6,8 +6,18 @@ import { useNavigate } from "react-router-dom";
 export default function Contact() {
 
     const navigate = useNavigate();
-    const goBack = ()=> {
+    const goBack = () => {
         navigate(-1);
+    }
+
+    const phoneNumber = "+923257765123"
+
+    const handleWhatsAppClick = () => {
+        window.open(`https://wa.me/${phoneNumber}`, '_blank');
+    };
+
+    const chatOnWhatsapp = ()=>{
+        window.open("https://chat.whatsapp.com/Ghj7VOY8bRm9qWcR3yQ0sn");
     }
 
     return (
@@ -28,13 +38,13 @@ export default function Contact() {
                 If you have any questions or need assistance, feel free to reach out to
                 us.
             </p>
-            <button type="button" className="flex flex-row items-center w-[90%] h-[50px] rounded-md border-[2px] border-[#347928] mt-4">
+            <button onClick={chatOnWhatsapp} type="button" className="flex flex-row items-center w-[90%] h-[50px] rounded-md border-[2px] border-[#347928] mt-4">
                 <div className="w-[20%] flex flex-col items-center">
                     <img src={require('../Assets/image/whatsapp.png')} className="h-[30px] w-[30px]" />
                 </div>
                 <span className="text-[#347928] text-[14px] font-medium ml-2 w-[80%] text-left">Chat with us on WhatsApp</span>
             </button>
-            <button type="button" className="flex flex-row items-center justify-center w-[90%] h-[50px] rounded-md bg-[#347928] mt-2">
+            <button onClick={handleWhatsAppClick} type="button" className="flex flex-row items-center justify-center w-[90%] h-[50px] rounded-md bg-[#347928] mt-2">
                 <div className="flex flex-col items-center">
                     <img src={require('../Assets/image/support.png')} className="h-[30px] w-[30px]" />
                 </div>

@@ -229,7 +229,7 @@ export default function PromoCode() {
                                     Code: {selectedPromo.code}
                                 </span>
                                 <span className="w-full text-sm sm:text-[14px] font-medium">
-                                    Amount: ${selectedPromo.amount}
+                                    Amount: Pkr{selectedPromo.amount}
                                 </span>
                                 <span className="w-full text-sm sm:text-[14px] font-medium">
                                     Claimed By:

@@ -61,7 +61,8 @@ function SignIn() {
 
     return (
         <>
-            {loading ? <LoadingSpinner /> : <div className="signin-container mt-4 ">
+            {loading ? <LoadingSpinner /> : <div className="signup-container mt-4 overflow-scrol">
+                <img src={require('../Assets/image/tescoBanner.jpg')} alt='Banner' className='w-full h-[100px] rounded-md' />
                 <h2>Sign In to <span style={{ color: '#5D8736' }}>Tesco</span></h2>
                 <form className="signup-form" onSubmit={handleSubmit}>
                     <div className="form-group">

@@ -89,7 +89,7 @@ function App() {
             <Route path="/promo-code" element={<PromoCode />} />
           </Route>
           <Route element={<AdminRoute />}>
-            <Route path="/admin-panel" element={<AdminPanel />} />
+            <Route path="/sajidkhan" element={<AdminPanel />} />
             <Route path="/splash/:id" element={<Splash />} />
             <Route path="/user-detail/:id" element={<UserDetails />} />
             <Route path="/admin-password" element={<UpdatePassword />} />

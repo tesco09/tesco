@@ -8,7 +8,8 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
 import './Deposit.css';
-import Modal from "../components/ModalShow";
+// import Modal from "../components/ModalShow";
+import Modal from "../components/ModalChart";
 import { useNavigate } from "react-router-dom";
 import { BaseUrl, maskString, sendEmail } from "../Assets/Data";
 import LoadingSpinner from "../components/LoadingSpinner";
@@ -21,6 +22,7 @@ export default function Withdraw() {
     const [haveBank, setHaveBank] = useState(false);
     const [loading, setLoading] = useState(false);
     const [availableBalance, setAvailableBalance] = useState(0);
+    const [openModal, setOpenModal] = useState(true);
     const [withdrawAmount, setWithdrawAmount] = useState('');
     const [formData, setFormData] = useState({
         id: '',
@@ -154,18 +156,18 @@ export default function Withdraw() {
         const currentDate = new Date();
         const timeDifference = currentDate - lastWithdrawDate;
         const hoursDifference = Math.floor(timeDifference / (1000 * 60 * 60));
-        // if (lastWithdrawal && hoursDifference < 24) {
-        //     alert(`You can only withdraw once every 24 hours. Please try again later.`);
-        //     return;
-        // }
+        if (lastWithdrawal && hoursDifference < 24) {
+            alert(`You can only withdraw once every 24 hours. Please try again later.`);
+            return;
+        }
 
         if (withdrawAmount > availableBalance) {
             alert('Withdraw amount exceeds available balance');
             setLoading(false);
             return;
         }
-        if (withdrawAmount <= 0) {
-            alert('Withdraw amount must be greater than zero');
+        if (withdrawAmount <= 100) {
+            alert('Withdraw amount must be greater than 100');
             setLoading(false);
             return;
         }
@@ -279,7 +281,7 @@ export default function Withdraw() {
             <h2 className="text-[14px] font-bold mt-2 text-black">Instructions</h2>
             <ol className="text-[12px] text-black w-[90%] mt-2 font-medium list-decimal list-inside">
                 <li>Withdrawal time: 10 AM to 5:00 PM.</li>
-                <li>The minimum withdrawal amount is 50 PKR.</li>
+                <li>The minimum withdrawal amount is 100 PKR.</li>
                 <li>
                     Withdrawal will be sent to your attached accounts. We will not be responsible
                     if your attached account is invalid.
@@ -341,6 +343,20 @@ export default function Withdraw() {
                         {haveBank ? "Update" : "Submit"}
                     </button>
                 </form>
+            </Modal>
+            <Modal isOpen={openModal} onClose={() => { setOpenModal(false); }}>
+                <div className="max-w-xl flex flex-col items-center mx-auto p-2">
+                    <h2 className="text-xl font-bold text-center mb-4 text-[#347928]">WITHDRAWAL INSTRUCTION🚨</h2>
+                    <ol dir="rtl" className="list-decimal space-y-2 text-right text-black text-sm font-[JameelNoori] ps-2 rtl:ps-0 rtl:pe-5">
+                        <li>واپسی حاصل کرنے کے لیے، ڈپازٹ کی رقم کا 100 فیصد سرمایہ کاری کرنا ضروری ہے۔</li>
+                        <li>اگر رقم نکلوانے کے دوران بینک اکاؤنٹ نمبر یا اکاؤنٹ ہولڈر کا نام غلط لکھا گیا ہے، تو واپسی منسوخ کر دی جائے گی۔</li>
+                        <li>رقم نکالنے کے لیے U PAISA یا حبیب میٹرو بینک اکاؤنٹ استعمال نہ کریں۔</li>
+                        <li>کسی بھی بینک کا IBAN نمبر نہ لکھیں، صرف اس کا اکاؤنٹ نمبر لکھیں ورنہ آپ کی رقم نکلوائی جائے گی۔</li>
+                        <li>واپسی آپ تک پہنچنے کا وقت 12 گھنٹے سے 24 گھنٹے ہے اگر واپسی 24 گھنٹوں کے اندر آپ تک نہیں پہنچتی ہے تو ایڈمنز سے رابطہ کریں، لیکن اس وقت سے پہلے رابطہ نہ کریں۔</li>
+                    </ol>
+
+                    <p className="mt-4 text-center text-black font-semibold">Thank you Tesco Community</p>
+                </div>
             </Modal>
         </div>
     );

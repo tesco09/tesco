@@ -50,7 +50,7 @@ function AdminLogin() {
             await localStorage.setItem('admin-email', data.data.email);
             await localStorage.setItem('showChart', true);
             // console.log('data:', data, data.data.id);
-            await navigate('/admin-panel');
+            await navigate('/sajidkhan');
             console.log('Server Response:', data);
         } catch (error) {
             console.error('Error:', error);
