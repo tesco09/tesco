@@ -28,6 +28,7 @@ import ApprovedDeposit from "../components/ApprovedDeposit";
 import UnverifiedUsers from "../components/UnverifiedUser";
 import Commission from "../components/Commission";
 import AdminNotification from "../components/AdminNotification";
+import { useNavigate } from "react-router-dom";
 
 ChartJS.register(
     CategoryScale,
@@ -39,6 +40,9 @@ ChartJS.register(
 );
 
 function AdminPanel() {
+
+    const navigate = useNavigate();
+
     const [dashboardData, setDashboardData] = useState({
         totalUsers: 0,
         activeUsers: 0,
@@ -103,6 +107,14 @@ function AdminPanel() {
     };
 
     const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
+
+    const handleLogout = () => {
+        setLoading(true);
+        localStorage.clear();
+        navigate('/admin-login');
+        setLoading(false);
+    };
+
 
     const Sidebar = () => {
         const [openDropdown, setOpenDropdown] = useState(null);
@@ -362,6 +374,12 @@ function AdminPanel() {
                                 Update Password
                             </li>
                         </a>
+                        <li
+                            onClick={handleLogout}
+                            className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
+                        >
+                            Logout
+                        </li>
                     </ul>
                 </nav>
             </div>
