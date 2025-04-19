@@ -7,7 +7,7 @@ import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 function EditPassword() {
     const navigate = useNavigate();
-    const {email} = useParams();
+    const { email } = useParams();
 
     const [showPasswords, setShowPasswords] = useState({
         oldPassword: false,
@@ -95,8 +95,9 @@ function EditPassword() {
     );
 
     return (
-        <div className="signin-container mt-4">
-            <h2>
+        <div className="signup-container mt-4">
+            <img src={require('../Assets/image/tescoBanner2.jpg')} alt='Banner' className='w-full h-[120px] rounded-md' />
+            <h2 className='mt-2'>
                 Edit <span style={{ color: '#5D8736' }}>Tesco Password</span>
             </h2>
             {/* Reset Password */}

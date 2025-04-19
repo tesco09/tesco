@@ -105,8 +105,9 @@ export default function PromoCode() {
 
     return (
         <div className="w-full h-screen flex flex-col items-center mt-[30%]">
-            {loading ? <LoadingSpinner /> : <div className="flex flex-col justify-center items-center bg-white shadow-md rounded-lg p-4 w-[90%] md:w-[50%] lg:w-[30%]">
-                <h1 className="text-[20px] font-bold text-center">You are a Regular User.</h1>
+            {loading ? <LoadingSpinner /> : <div className="flex flex-col justify-center items-center bg-white shadow-md rounded-lg p-2 w-[90%] md:w-[50%] lg:w-[30%]">
+                <img src={require('../Assets/image/tescoBanner2.jpg')} alt='Banner' className='w-full h-[100px] rounded-md' />
+                <h1 className="text-[20px] font-bold text-center pt-2">You are a Regular User.</h1>
                 <label className="text-[12px] font-medium text-left text-gray-500 w-full">Enter Promo Code</label>
                 <input type="text" value={code} onChange={handleChange} placeholder="Enter promo code" className="border border-gray-300 rounded-md p-2 w-full mt-1" />
                 <button onClick={claimPromo} className="bg-[#347928] text-white rounded-md p-2 py-1 mt-2 w-full">Claim Promo Code</button>
@@ -129,7 +130,7 @@ export default function PromoCode() {
                             <tbody>
                                 {todayClaims?.map((item, idx) => (
                                     <tr key={idx} className="hover:bg-gray-50 transition">
-                                        <td className="p-1 border text-center">${item.amount}</td>
+                                        <td className="p-1 border text-center">Pkr&nbsp;{item.amount}</td>
                                         <td className="p-1 border text-center">{item.name}</td>
                                     </tr>
                                 ))}

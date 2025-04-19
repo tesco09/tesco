@@ -129,8 +129,9 @@ function ForgotPassword() {
     );
 
     return (
-        <div className="signin-container mt-4">
-            <h2>
+        <div className="signup-container mt-4">
+           <img src={require('../Assets/image/tescoBanner.jpg')} alt='Banner' className='w-full h-[100px] rounded-md' />
+           <h2>
                 Forgot <span style={{ color: '#5D8736' }}>Tesco Account</span>
             </h2>
             {!verified && <>

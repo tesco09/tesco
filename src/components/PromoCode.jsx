@@ -172,7 +172,7 @@ export default function PromoCode() {
                                             <strong>Code:</strong> {promo.code}
                                         </p>
                                         <p className="text-sm font-medium">
-                                            <strong>Amount:</strong> $
+                                            <strong>Amount:</strong> Pkr &nbsp; 
                                             {promo.amount}
                                         </p>
                                         <p className="text-sm font-medium">

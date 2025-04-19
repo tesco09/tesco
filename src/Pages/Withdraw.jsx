@@ -354,7 +354,6 @@ export default function Withdraw() {
                         <li>کسی بھی بینک کا IBAN نمبر نہ لکھیں، صرف اس کا اکاؤنٹ نمبر لکھیں ورنہ آپ کی رقم نکلوائی جائے گی۔</li>
                         <li>واپسی آپ تک پہنچنے کا وقت 12 گھنٹے سے 24 گھنٹے ہے اگر واپسی 24 گھنٹوں کے اندر آپ تک نہیں پہنچتی ہے تو ایڈمنز سے رابطہ کریں، لیکن اس وقت سے پہلے رابطہ نہ کریں۔</li>
                     </ol>
-
                     <p className="mt-4 text-center text-black font-semibold">Thank you Tesco Community</p>
                 </div>
             </Modal>

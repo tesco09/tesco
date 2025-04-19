@@ -96,6 +96,7 @@ function SignUp() {
     return (
         <>
             {loading ? <LoadingSpinner /> : <div className="signup-container">
+                <img src={require('../Assets/image/tescoBanner.jpg')} alt='Banner' className='w-full h-[100px] rounded-md' />
                 <h2>Create a <span className='text-[#5D8736] text-bold'>Tesco</span> Account</h2>
                 <form className="signup-form" onSubmit={handleSubmit}>
                     <div className="form-group">

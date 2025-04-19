@@ -62,7 +62,8 @@ function AdminLogin() {
     return (
         <>
             {loading ? <LoadingSpinner /> : <div className="signin-container mt-4 ">
-                <h2>Admin Login  <span style={{ color: '#5D8736' }}>Tesco App</span></h2>
+                <img src={require('../Assets/image/tescoBanner.jpg')} alt='Banner' className='w-full h-[120px] rounded-md' />
+                <h2 className='mt-2'>Admin Login  <span style={{ color: '#5D8736' }}>Tesco App</span></h2>
                 <form className="signup-form" onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="email">Email</label>

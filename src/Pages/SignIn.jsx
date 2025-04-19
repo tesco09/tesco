@@ -45,7 +45,8 @@ function SignIn() {
 
             const data = await response.json();
             if (!response.ok) {
-                throw new Error(data.message || 'Registration failed!');
+                alert(`Login failed: ${data.error}`);
+                throw new Error(data.error || 'login failed!');
             }
             await localStorage.setItem('id', data.data.id);
             await localStorage.setItem('showChart', true);
