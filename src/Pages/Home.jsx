@@ -60,12 +60,14 @@ function Home() {
     }, []);
 
     useEffect(() => {
-        setLoading(true);
-        const timer = setTimeout(() => {
-            fetchUserData();
-        }, 2000);
+        if (localStorage.getItem('admin-email')) {
+            setLoading(true);
+            const timer = setTimeout(() => {
+                fetchUserData();
+            }, 2000);
 
-        return () => clearTimeout(timer);
+            return () => clearTimeout(timer);
+        }
     }, []);
 
 
