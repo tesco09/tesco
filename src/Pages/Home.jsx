@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import './Home.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAdd, faEye, faEyeSlash, faMoneyBillTransfer } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { BaseUrl, fetchData } from '../Assets/Data';
 import LoadingSpinner from '../components/LoadingSpinner';
 import Modal from '../components/ModalChart';
@@ -23,12 +23,28 @@ function Home() {
     const [reload, setReload] = useState(false);
     const itemsPerPage = 5; // Number of offers to show per page
 
+
     const fetchUserData = useCallback(async () => {
         setLoading(true);
         try {
-            const data = await fetchData();
-            await fetchPlans();
-            setUserData(data);
+            const id = localStorage.getItem('id');
+            const [userDataResponse, plansResponse, detailsResponse, inPlanResponse] = await Promise.all([
+                fetchData(),
+                fetch(`${BaseUrl}/myplan/${id}`),
+                fetch(`${BaseUrl}/details/${id}`),
+                fetch(`${BaseUrl}/plan`)
+            ]);
+
+            const userData = await userDataResponse;
+            const plans = await plansResponse.json();
+            const details = await detailsResponse.json();
+            const investplan = await inPlanResponse.json();
+
+            const hasFreePlan = plans.some((item) => item.planId === '1');
+            setFreePlan(hasFreePlan);
+            setPeopleInvested(details);
+            setInvestmentOffers(investplan);
+            setUserData(userData);
         } catch (error) {
             console.error('Error fetching user data:', error);
         } finally {
@@ -36,34 +52,9 @@ function Home() {
         }
     }, []);
 
-    const fetchPlans = useCallback(async () => {
-        try {
-            const id = localStorage.getItem('id');
-            const plansResponse = await fetch(`${BaseUrl}/myplan/${id}`);
-            const detailsResponse = await fetch(`${BaseUrl}/details/${id}`);
-
-            const inPlan = await fetch(`${BaseUrl}/plan`);
-
-            const investplan = await inPlan.json();
-            const plans = await plansResponse.json();
-            const details = await detailsResponse.json();
-            console.log('aray:', investplan);
-
-            const hasFreePlan = plans.some((item) => item.planId === '1');
-            setFreePlan(hasFreePlan);
-            setPeopleInvested(details);
-            setInvestmentOffers(investplan);
-        } catch (error) {
-            console.error('Error fetching plans:', error);
-        }
-    }, []);
-
     useEffect(() => {
-        // Check if the page has already been reloaded
         if (!localStorage.getItem('reloaded')) {
-            // Set flag in localStorage to prevent future reloads
             localStorage.setItem('reloaded', 'true');
-            // Reload the page
             window.location.reload();
         }
     }, []);
@@ -82,7 +73,7 @@ function Home() {
         setter((prev) => !prev);
     };
 
-    const chatOnWhatsapp = ()=>{
+    const chatOnWhatsapp = () => {
         window.open("https://chat.whatsapp.com/Ghj7VOY8bRm9qWcR3yQ0sn");
     }
 
@@ -123,7 +114,7 @@ function Home() {
                 onClick={() => !offer.lock && navigate(`/invest/${offer.id}`)}
                 className={`offer-card ${offer.lock ? '' : 'shadow-md'}`}
             >
-                <img src={offer.image} alt={offer.name} className="offer-image" />
+                <img src={offer.image} alt={offer.name} className="offer-image" loading="lazy" />
                 <div className="w-[50%] flex flex-col items-left">
                     <h2>Investment: {offer.amount}</h2>
                     <p className="pb-0 mb-0">Expire Plan: {offer.days}D</p>

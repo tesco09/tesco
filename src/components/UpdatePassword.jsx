@@ -59,8 +59,8 @@ function UpdatePassword() {
                 <LoadingSpinner />
             ) : (
                 <div className="flex flex-col items-center w-full pb-4">
-                  <img src={require('../Assets/image/tescoBanner.jpg')} alt='Banner' className='w-[90%] h-[120px] rounded-md' />
-                  <h2 className='mt-2'>Update Password</h2>
+                    <img src={require('../Assets/image/tescoBanner.jpg')} alt='Banner' className='w-[90%] h-[120px] rounded-md' />
+                    <h2 className='mt-2'>Update Password</h2>
                     <form className="w-[90%]" onSubmit={handleSubmit}>
                         <div className="form-group">
                             <label htmlFor="email">Email</label>
