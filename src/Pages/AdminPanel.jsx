@@ -52,6 +52,7 @@ function AdminPanel() {
         totalWithdrawals: 0,
         unverifiedUsers: 0,
         notifications: 0,
+        withdrawCharges: 0,
     });
     const [loading, setLoading] = useState(false);
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -76,7 +77,9 @@ function AdminPanel() {
             const totalWithdrawResponse = await fetch(`${BaseUrl}/total-withdraw`);
             const totalDepositResponse = await fetch(`${BaseUrl}/total-deposit`);
             const notificationResponse = await fetch(`${BaseUrl}/notifications/receiver/Admin`);
+            const withdrawChargesResponse = await fetch(`${BaseUrl}/withdraw-charges`);
 
+            const withdrawCharges = await withdrawChargesResponse.json();
             const notifications = await notificationResponse.json();
             const totalWithdraw = await totalWithdrawResponse.json();
             const totalDeposit = await totalDepositResponse.json();
@@ -98,6 +101,7 @@ function AdminPanel() {
                 totalWithdrawals: totalWithdraw.totalWithdraw,
                 unverifiedUsers: unverifiedUsers,
                 notifications: notifications.length,
+                withdrawCharges: withdrawCharges,
             });
         } catch (error) {
             console.error("Error fetching dashboard data:", error);
@@ -506,6 +510,14 @@ function AdminPanel() {
                         bgColor="bg-purple-100"
                         iconColor="text-pink-500"
                         tab="UnverifiedUser"
+                    />
+                    <DashboardCard
+                        icon={faUsers}
+                        title="Withdrawal Charges"
+                        value={dashboardData?.withdrawCharges}
+                        bgColor="bg-purple-100"
+                        iconColor="text-pink-500"
+                        tab="TotalWithdraw"
                     />
                 </div>
 

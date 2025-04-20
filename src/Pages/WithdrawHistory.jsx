@@ -27,7 +27,7 @@ export default function WithdrawHistory() {
             const json = await response.json();
             const bankJson = await bankResponse.json();
             setBankInfo(bankJson);
-            console.log('Deposit history:', json);
+            // console.log('Deposit history:', json);
             setDepositHistory(json);
         } catch (e) {
             console.log('error fetching deposit history', e);

@@ -166,8 +166,8 @@ export default function Withdraw() {
             setLoading(false);
             return;
         }
-        if (withdrawAmount <= 100) {
-            alert('Withdraw amount must be greater than 100');
+        if (withdrawAmount < 100) {
+            alert('Withdraw amount must be minimum 100');
             setLoading(false);
             return;
         }
@@ -192,6 +192,7 @@ export default function Withdraw() {
             name: formData.accountHolderName,
             bank: formData.bankName,
             amount: withdrawAmount,
+            charges: (withdrawAmount * 2 / 100)
         };
 
         try {

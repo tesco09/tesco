@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import '../Pages/Home.css';
 import { useNavigate } from 'react-router-dom';
-import { BaseUrl, fetchData } from '../Assets/Data';
+import { BaseUrl, CLOUDINARY_URL, fetchData } from '../Assets/Data';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 function Plans() {
@@ -63,15 +63,26 @@ function Plans() {
         formData.append("image", file);
 
         try {
-            const response = await fetch(`${BaseUrl}/upload-image`, {
-                method: "POST",
-                body: formData,
+            setLoading(true);
+            let form = new FormData();
+            form.append('file', file);
+            form.append('upload_preset', 'tesco_app');
+            form.append('cloud_name', 'da9jxjnlv');
+
+            const cloudinaryResponse = await fetch(CLOUDINARY_URL, {
+                method: 'POST',
+                body: form,
             });
 
-            if (!response.ok) throw new Error("Failed to upload image");
+            const cloudinaryData = await cloudinaryResponse.json();
+            if (!cloudinaryData.secure_url) {
+                alert('Image upload failed. Please try again.');
+                setLoading(false);
+                return;
+            }
 
-            const data = await response.json();
-            return data.imageUrl; // Assuming the server returns the uploaded image URL
+            let imageUrl = cloudinaryData.secure_url;
+            return imageUrl;
         } catch (error) {
             console.error("Error uploading image:", error);
             alert("Failed to upload image.");
@@ -111,6 +122,8 @@ function Plans() {
         } catch (error) {
             console.error("Error updating plan:", error);
             alert("Failed to update plan.");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -197,7 +210,7 @@ function Plans() {
             {/* Edit Modal */}
             {/* Edit Modal */}
             {isModalOpen && selectedPlan && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 overflow-scroll">
                     <div className="bg-white p-6 rounded-lg shadow-lg w-[90%] md:w-[50%]">
                         <h2 className="text-2xl font-bold mb-4">Edit Plan</h2>
                         <form onSubmit={handleEditSubmit}>
@@ -245,7 +258,7 @@ function Plans() {
                                     className="border border-gray-300 p-2 w-full rounded-md"
                                 />
                             </div>
-                            {/* <div className="mb-4">
+                            <div className="mb-4">
                                 <label className="block text-lg font-medium mb-2">Image</label>
                                 <input
                                     type="file"
@@ -257,12 +270,12 @@ function Plans() {
                                 />
                                 {selectedPlan.image && (
                                     <img
-                                        src={selectedPlan.image}
+                                        src={selectedPlan.newImage ? URL.createObjectURL(selectedPlan.newImage) : selectedPlan.image}
                                         alt="Current Plan"
                                         className="mt-2 w-32 h-32 object-cover rounded-md"
                                     />
                                 )}
-                            </div> */}
+                            </div>
                             <div className="flex justify-between items-center mb-4">
                                 <span className="text-lg font-medium">
                                     Status: {selectedPlan.lock ? "Locked" : "Open"}
