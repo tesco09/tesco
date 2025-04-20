@@ -95,11 +95,11 @@ function EditPassword() {
     );
 
     return (
-        <div className="signup-container mt-4">
-            <img src={require('../Assets/image/tescoBanner2.jpg')} alt='Banner' className='w-full h-[120px] rounded-md' />
-            <h2 className='mt-2'>
+        <div className="signup-container mt-0">
+            <h2 className='mt-2 w-full'>
                 Edit <span style={{ color: '#5D8736' }}>Tesco Password</span>
             </h2>
+            <img src={require('../Assets/image/forgotBanner.jpg')} alt='Banner' className='w-full h-[120px] rounded-md mb-2' />
             {/* Reset Password */}
             <form className="signup-form" onSubmit={handleSubmit}>
                 {renderPasswordInput('oldPassword', 'Old Password', 'oldPassword')}

@@ -234,9 +234,9 @@ function Home() {
                     </ol>
 
                     <p className="mt-4 text-center text-black font-semibold">Thank you Tesco Community</p>
-                    <button onClick={chatOnWhatsapp} type="button" className="flex flex-row items-center justify-center w-full h-[50px] rounded-md bg-[#347928] mt-2 mb-2">
+                    {/* <button onClick={chatOnWhatsapp} type="button" className="flex flex-row items-center justify-center w-full h-[50px] rounded-md bg-[#347928] mt-2 mb-2">
                         <span className="text-white text-[14px] font-medium ml-2 text-center w-full">Chat with us</span>
-                    </button>
+                    </button> */}
                 </div>
             </Modal>
         </>

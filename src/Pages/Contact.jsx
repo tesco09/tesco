@@ -16,17 +16,17 @@ export default function Contact() {
         window.open(`https://wa.me/${phoneNumber}`, '_blank');
     };
 
-    const chatOnWhatsapp = ()=>{
+    const chatOnWhatsapp = () => {
         window.open("https://chat.whatsapp.com/Ghj7VOY8bRm9qWcR3yQ0sn");
     }
 
     return (
-        <div className="flex flex-col items-center mt-2 w-full pb-[20%]">
-            <div className="flex flex-row items-center w-[90%]">
+        <div className="flex flex-col items-center mt-0 w-full pb-[20%] mt-0">
+            <div className="flex flex-row items-center w-full bg-[#347928] mt-0 p-2">
                 <div onClick={goBack} className="flex flex-col items-center h-[15px] w-[15px]">
-                    <FontAwesomeIcon icon={faClose} className="h-[15px] w-[15px]" />
+                    <FontAwesomeIcon icon={faClose} className="h-[15px] w-[15px] text-white" />
                 </div>
-                <span className="text-[#347928] text-[14px] font-medium ml-2">Tesco Contact Customer Support</span>
+                <span className="text-white text-[14px] font-medium ml-2">Tesco Contact Customer Support</span>
             </div>
             <img
                 src={require('../Assets/image/contact.png')}

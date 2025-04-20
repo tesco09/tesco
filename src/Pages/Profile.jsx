@@ -113,7 +113,7 @@ export default function Profile() {
     return (
         <>
             {uploading ? <LoadingSpinner /> : <div className="flex flex-col items-center w-full">
-                <div className="flex flex-col items-center justify-between w-[90%] bg-white shadow-md rounded-xl mt-4">
+                <div className="flex flex-col items-center justify-between w-[90%] bg-white shadow-md rounded-xl mt-2">
                     <div className="flex flex-row items-center justify-start w-full bg-[#347928] py-2 px-3 rounded-t-xl">
                         <div onClick={goBack} className="h-[15px] w-[15px] flex flex-col items-center justify-center">
                             <FontAwesomeIcon icon={faChevronLeft} className="h-[15px] w-[15px] text-white" />

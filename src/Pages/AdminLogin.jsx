@@ -51,7 +51,7 @@ function AdminLogin() {
             await localStorage.setItem('showChart', true);
             // console.log('data:', data, data.data.id);
             await navigate('/sajidkhan');
-            console.log('Server Response:', data);
+            // console.log('Server Response:', data);
         } catch (error) {
             console.error('Error:', error);
         } finally {
@@ -62,8 +62,8 @@ function AdminLogin() {
     return (
         <>
             {loading ? <LoadingSpinner /> : <div className="signin-container mt-4 ">
-                <img src={require('../Assets/image/tescoBanner.jpg')} alt='Banner' className='w-full h-[120px] rounded-md' />
                 <h2 className='mt-2'>Admin Login  <span style={{ color: '#5D8736' }}>Tesco App</span></h2>
+                <img src={require('../Assets/image/loginBanner.jpg')} alt='Banner' className='w-full h-[120px] rounded-md' />
                 <form className="signup-form" onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="email">Email</label>

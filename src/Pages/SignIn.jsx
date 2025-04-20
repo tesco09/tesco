@@ -52,7 +52,7 @@ function SignIn() {
             await localStorage.setItem('showChart', true);
             // console.log('data:', data, data.data.id);
             await navigate('/');
-            console.log('Server Response:', data);
+            // console.log('Server Response:', data);
         } catch (error) {
             console.error('Error:', error);
         } finally {
@@ -62,9 +62,9 @@ function SignIn() {
 
     return (
         <>
-            {loading ? <LoadingSpinner /> : <div className="signup-container mt-4 overflow-scrol">
-                <img src={require('../Assets/image/tescoBanner.jpg')} alt='Banner' className='w-full h-[100px] rounded-md' />
+            {loading ? <LoadingSpinner /> : <div className="signup-container mt-2 overflow-scrol">
                 <h2>Sign In to <span style={{ color: '#5D8736' }}>Tesco</span></h2>
+                <img src={require('../Assets/image/loginBanner.jpg')} alt='Banner' className='w-full h-[100px] rounded-md' />
                 <form className="signup-form" onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="email">Email</label>

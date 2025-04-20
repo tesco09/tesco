@@ -42,7 +42,7 @@ function ForgotPassword() {
             });
 
             const json = await response.json();
-            console.log('otp:', json.otp);
+            // console.log('otp:', json.otp);
             setSentOtp(json.otp);
             if (!response.ok) throw new Error(json.message);
             alert('OTP sent to your email');
@@ -129,11 +129,11 @@ function ForgotPassword() {
     );
 
     return (
-        <div className="signup-container mt-4">
-           <img src={require('../Assets/image/tescoBanner.jpg')} alt='Banner' className='w-full h-[100px] rounded-md' />
-           <h2>
+        <div className="signup-container mt-0">
+            <h2 className='mb-2'>
                 Forgot <span style={{ color: '#5D8736' }}>Tesco Account</span>
             </h2>
+            <img src={require('../Assets/image/forgotBanner.jpg')} alt='Banner' className='w-full h-[120px] rounded-md mb-2' />
             {!verified && <>
                 {/* Email + Send OTP */}
                 <form className="signup-form">

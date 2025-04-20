@@ -75,7 +75,7 @@ function SignUp() {
                 alert(data.message || 'Registration failed!');
                 throw new Error(data.message || 'Registration failed!');
             }
-            console.log('Server Response:', data);
+            // console.log('Server Response:', data);
         } catch (error) {
             console.error('Error:', error);
         } finally {
@@ -95,9 +95,9 @@ function SignUp() {
 
     return (
         <>
-            {loading ? <LoadingSpinner /> : <div className="signup-container">
-                <img src={require('../Assets/image/tescoBanner.jpg')} alt='Banner' className='w-full h-[100px] rounded-md' />
+            {loading ? <LoadingSpinner /> : <div className="signup-container mt-0">
                 <h2>Create a <span className='text-[#5D8736] text-bold'>Tesco</span> Account</h2>
+                <img src={require('../Assets/image/tescoBanner.jpg')} alt='Banner' className='w-full h-[100px] rounded-md' />
                 <form className="signup-form" onSubmit={handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="firstName">First Name</label>

@@ -55,7 +55,7 @@ function App() {
   return (
     <>
       {shouldShowHeader && <Header />}
-      <main className='pt-[10%]'>
+      <main className={shouldShowHeader ? 'pt-[10%]' : ''}>
         <Routes>
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signup/:id" element={<SignUp />} />
