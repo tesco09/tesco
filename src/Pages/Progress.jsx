@@ -22,7 +22,7 @@ export default function Progress() {
             const response2 = await fetch(`${BaseUrl}/details/${id}`);
             const json = await response.json();
             const json2 = await response2.json();
-            console.log('plan data:', json, json2);
+            // console.log('plan data:', json, json2);
             setPeopleInvested(json2);
             if (selectedLevel === 1) {
                 const completed = json.filter((item) => item.status === 'complete');

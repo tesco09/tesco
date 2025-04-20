@@ -23,7 +23,7 @@ export default function MyTeam() {
             setLoading(true);
             const response = await fetch(`${BaseUrl}/mylevels/${id}`);
             const json = await response.json();
-            console.log('json:', json.level1.name, id);
+            // console.log('json:', json.level1.name, id);
             setLevel1(json.level1);
             setLevel2(json.level2);
             setLevel3(json.level3);

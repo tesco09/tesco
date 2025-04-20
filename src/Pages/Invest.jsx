@@ -16,7 +16,7 @@ export default function Invest() {
 
     const fetchData = async () => {
         const data = investmentOffers.find((item) => item.id === parseFloat(id));
-        console.log(data,);
+        // console.log(data,);
         setSelect(data);
     }
 

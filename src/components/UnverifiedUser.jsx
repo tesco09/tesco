@@ -14,7 +14,7 @@ const UnverifiedUsers = () => {
             const response = await fetch(`${BaseUrl}/register`);
             const json = await response.json();
             const banUser = await json.filter((item) => item.ban);
-            console.log("data:", banUser);
+            // console.log("data:", banUser);
             setUsers(banUser);
         } catch (e) {
             console.log("error fetching data...", e);

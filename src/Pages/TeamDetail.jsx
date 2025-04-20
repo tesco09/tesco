@@ -13,7 +13,7 @@ export default function TeamDetail() {
             setLoading(true);
             const response = await fetch(`${BaseUrl}/details/${id}`);
             const json = await response.json();
-            console.log('team data:', json);
+            // console.log('team data:', json);
             setTeamData(json);
         } catch (e) {
             console.log('error fetching team data...');

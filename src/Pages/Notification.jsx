@@ -53,7 +53,7 @@ export default function Notification() {
             const data = await response.json();
 
             if (response.ok) {
-                console.log('User updated successfully:', data);
+                // console.log('User updated successfully:', data);
                 fetchData();
             } else {
                 console.error('Error updating user:', data.message);
@@ -83,7 +83,7 @@ export default function Notification() {
             const data = await response.json();
 
             if (response.ok) {
-                console.log('User updated successfully:', data);
+                // console.log('User updated successfully:', data);
                 fetchData();
             } else {
                 console.error('Error updating user:', data.message);

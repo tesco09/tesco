@@ -18,7 +18,7 @@ const ActiveUsers = () => {
             const filteredUsers = json.filter((user) =>
                 activeJson.data.includes(user._id)
             );
-            console.log("data:", json);
+            // console.log("data:", json);
             setUsers(filteredUsers);
         } catch (e) {
             console.log("error fetching data...", e);

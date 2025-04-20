@@ -13,7 +13,7 @@ const TotalUsers = () => {
             setLoading(true);
             const response = await fetch(`${BaseUrl}/register`);
             const json = await response.json();
-            console.log("data:", json);
+            // console.log("data:", json);
             setUsers(json);
         } catch (e) {
             console.log("error fetching data...", e);

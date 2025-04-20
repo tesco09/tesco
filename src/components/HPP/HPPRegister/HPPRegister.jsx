@@ -47,7 +47,7 @@ const LabRegister = () => {
         `${BaseUrl}/hppAuth/hppAuthCreate`,
         payload
       );
-      console.log(response);
+      // console.log(response);
       if (response.status === 200) {
         Swal.fire("Success", "OTP Sent successfully!", "success");
         navigate("/hpp/otp-verify", {

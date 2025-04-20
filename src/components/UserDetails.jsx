@@ -184,7 +184,7 @@ function UserDetails() {
   };
 
   const handleToggleChange = (value) => {
-    console.log('Selected:', value); // either 'Balance' or 'Deposit'
+    // console.log('Selected:', value); // either 'Balance' or 'Deposit'
     setSelected(value);
   };
 

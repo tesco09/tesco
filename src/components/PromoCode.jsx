@@ -54,7 +54,7 @@ export default function PromoCode() {
 
             if (!response.ok) {
                 const errorData = await response.json();
-                console.log("Response error:", response);
+                // console.log("Response error:", response);
                 console.log("Error body:", errorData);
                 throw new Error("Failed to create promo code");
             }

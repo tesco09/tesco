@@ -24,7 +24,7 @@ export default function TransactionDetail() {
             const json = await response.json();
             const bankJson = await bankResponse.json();
             if (response.ok) {
-                console.log(json);
+                // console.log(json);
                 type === 'deposit' ? setDepositHistory(json) : setWithdrawHistory(json);
                 setBankInfo(bankJson);
             } else {

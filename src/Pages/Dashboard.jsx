@@ -81,7 +81,7 @@ export default function Dashboard() {
             const data = await response.json();
 
             if (response.ok) {
-                console.log("Success:", data.message);
+                // console.log("Success:", data.message);
                 fetchScreenshots();
             } else {
                 console.error("Failed:", data.message);
@@ -107,7 +107,7 @@ export default function Dashboard() {
             const data = await response.json();
 
             if (response.ok) {
-                console.log('Withdraw verified:', data.message);
+                // console.log('Withdraw verified:', data.message);
                 fetchWithdrawRequests(); // Refresh the withdraw requests list
                 // optionally refresh the list or show success toast
             } else {

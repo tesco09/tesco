@@ -90,7 +90,7 @@ function AdminPanel() {
             const unverifiedUsers = usersData.filter(item => item.ban === true).length;
             const withdrawalsData = await withdrawalsResponse.json();
             const pendingWithdrawals = withdrawalsData.filter(item => item.pending === true && item.scam === false).length;
-            console.log('usersData:', depositsData);
+            // console.log('usersData:', depositsData);
 
             setDashboardData({
                 totalUsers: usersData.length,

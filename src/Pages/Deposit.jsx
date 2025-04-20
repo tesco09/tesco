@@ -58,7 +58,7 @@ function Deposit() {
         });
 
         const cloudinaryData = await cloudinaryResponse.json();
-        console.log('Cloudinary Response:', cloudinaryData.secure_url);
+        // console.log('Cloudinary Response:', cloudinaryData.secure_url);
 
         if (!cloudinaryData.secure_url) {
             alert('Image upload failed. Please try again.');
@@ -66,7 +66,7 @@ function Deposit() {
         }
         let url1 = cloudinaryData.secure_url;
 
-        console.log('images:', url1);
+        // console.log('images:', url1);
 
         if (!formData.paymentProof || !formData.amount) {
             alert('all fields are madatory');
@@ -93,7 +93,7 @@ function Deposit() {
             });
 
             const result = await response.json();
-            console.log('Category added:', result);
+            // console.log('Category added:', result);
             if (response.ok) {
                 await sendEmail('sajimayo786@gmail.com', 'Deposit Request', `You have new Deposit request of amount ${formData.amount} Rs.`)
                 navigate('/home');

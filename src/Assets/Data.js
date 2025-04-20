@@ -8,10 +8,10 @@ export const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/da9jxjnlv/image/u
 
 export const fetchData = async () => {
     try {
-        console.log('id:', id);
+        // console.log('id:', id);
         const response = await fetch(`${BaseUrl}/register/${id}`);
         const json = await response.json();
-        console.log('json:', json);
+        // console.log('json:', json);
         return json;
     } catch (e) {
         console.log('error fetching Data...', e);

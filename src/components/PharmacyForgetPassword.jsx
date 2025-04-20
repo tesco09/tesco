@@ -32,7 +32,7 @@ const PharmacyForgetPassword = () => {
         `${BaseUrl}/user/forgetPassword`,
         payload
       );
-      console.log(response);
+      // console.log(response);
       if (response.status === 200) {
         Swal.fire("Success", response.data, "success", 3000);
       } else {
