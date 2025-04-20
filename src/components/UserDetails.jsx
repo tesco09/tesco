@@ -245,7 +245,7 @@ function UserDetails() {
               Deduct Balance
             </button>
             <button
-              onClick={() => { window.open(`https://tesco-rho.vercel.app/splash/${id}`) }}
+              onClick={() => { window.open(`https://www.tesco-network.com/splash/${id}`) }}
               className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-md shadow-md transition duration-300"
             >
               Login
