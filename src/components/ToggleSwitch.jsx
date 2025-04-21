@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const ToggleSwitch = ({ onChange }) => {
-  const [selected, setSelected] = useState('Balance');
-
-  const handleToggle = (value) => {
-    setSelected(value);
-    if (onChange) onChange(value);
+const ToggleSwitch = ({ value, onChange }) => {
+  const handleToggle = (option) => {
+    if (onChange) onChange(option);
   };
 
   return (
@@ -15,7 +12,7 @@ const ToggleSwitch = ({ onChange }) => {
           key={option}
           onClick={() => handleToggle(option)}
           className={`px-2 py-1 rounded-full text-sm font-medium transition-all ${
-            selected === option
+            value === option
               ? 'bg-blue-600 text-white'
               : 'text-gray-700 hover:bg-gray-300'
           }`}

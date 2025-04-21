@@ -79,8 +79,12 @@ function Home() {
         setter((prev) => !prev);
     };
 
-    const chatOnWhatsapp = () => {
-        window.open("https://chat.whatsapp.com/Ghj7VOY8bRm9qWcR3yQ0sn");
+    const checkDeposit = (amount, id) => {
+        if (amount > userData.deposit) {
+            alert('You don`t have enough deposit');
+        } else {
+            navigate(`/invest/${id}`);
+        }
     }
 
     const renderBalanceCard = (label, value, isHidden, toggleVisibility) => (
@@ -117,7 +121,7 @@ function Home() {
         return (
             <div
                 key={offer.id}
-                onClick={() => !offer.lock && navigate(`/invest/${offer.id}`)}
+                onClick={() => !offer.lock && checkDeposit(offer.amount, offer.id)}
                 className={`offer-card ${offer.lock ? '' : 'shadow-md'}`}
             >
                 <img src={offer.image} alt={offer.name} className="offer-image" loading="lazy" />
@@ -157,16 +161,18 @@ function Home() {
                 <LoadingSpinner />
             ) : (
                 <div className="flex flex-col items-center w-full">
-                    {/* <div className='flex flex-row items-center w-[90%]'>
-                        <span>JOIN OFFICIAL WHATSAPP GROUP</span>
-                        <img src={require('../Assets/image/whatsapp.png')} className='h-10 w-10'/>
-                    </div> */}
-                    <span className="pt-[10%] text-[12px] font-bold w-[90%] text-black text-center">
+                    <span className="pt-[15%] text-[12px] font-bold w-[90%] text-black text-center">
                         Important Notice🚨🚨
                     </span>
                     <span className="pt-[2%] text-[12px] font-medium w-[90%] text-black text-center">
                         Be sure to join our WhatsApp group. Every new update will be given in the WhatsApp Group🤩
                     </span>
+                    <div className='flex flex-row items-center w-[90%] mt-[5%] justify-center'>
+                        <span className='text-[12px] text-red-500 font-bold mr-2'>JOIN OFFICIAL WHATSAPP GROUP</span>
+                        <button type="button" onClick={() => { window.open("https://chat.whatsapp.com/Ghj7VOY8bRm9qWcR3yQ0sn") }}>
+                            <img src={require('../Assets/image/whatsapp.png')} className='h-8 w-8' />
+                        </button>
+                    </div>
                     <div className="home-container md:mb-4 mb-[25%] md:mt-[5%] mt-[5%]">
                         <div className="flex flex-row items-center justify-center mb-4 w-[70%] mt-4">
                             {renderBalanceCard(

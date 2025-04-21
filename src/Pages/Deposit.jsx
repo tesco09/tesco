@@ -137,7 +137,7 @@ function Deposit() {
                         <span>Account Holder Name:</span>
                     </div>
                     <div className="border rounded-md p-2 flex flex-row items-center justify-between">
-                        <span className='text-[14px] text-black font-bold'>Mohammed Kashif</span>
+                        <span className='text-[14px] text-black font-bold'>Kashif Ali</span>
                         <button onClick={() => handleCopy('Mohammed Kashif')}>
                             <FontAwesomeIcon icon={faCopy} className='text-gray-500 text-[20px]' />
                         </button>

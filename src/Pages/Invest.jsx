@@ -15,9 +15,10 @@ export default function Invest() {
     const [loading, setLoading] = useState(false);
 
     const fetchData = async () => {
-        const data = investmentOffers.find((item) => item.id === parseFloat(id));
-        // console.log(data,);
-        setSelect(data);
+        const response = await fetch(`${BaseUrl}/plan/${id}`);
+        const json = await response.json();
+        console.log('json:', json);
+        setSelect(json);
     }
 
     useEffect(() => {
@@ -74,7 +75,7 @@ export default function Invest() {
                 </button>
                 <span className="text-[16px] font-semibold ml-2 w-[80%] line-clamp-1">{select?.name}</span>
             </div>
-            <img src={select?.image} alt="preview" className="w-[200px] h-[200px] border mt-[5%]"/>
+            <img src={select?.image} alt="preview" className="w-[200px] h-[200px] border mt-[5%]" />
             <h3 className='text-[#347928] font-bold text-[24px] mt-[10%]'>PKR {select?.amount}</h3>
             <label className="text-[14px] text-gray-500 font-medium mt-0">Amount</label>
             <p className="p-2 h-[40px] w-[100px] border-[1.5px] border-[#5D8736] rounded-md bg-white mt-1 text-[12px] font-bold text-center">{select?.amount}</p>

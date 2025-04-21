@@ -57,12 +57,14 @@ function UserDetails() {
 
   const handleAddBalance = async () => {
 
+    console.log('select:', selected);
     let newBalance = 0;
     if (selected === 'Balance') {
       newBalance = await parseFloat(user.balance) + parseFloat(add);
     } else if (selected === 'Deposit') {
       newBalance = await parseFloat(user.deposit) + parseFloat(add);
     }
+
     let data = {};
     if (selected === 'Balance') {
       data = { balance: newBalance, }
@@ -184,7 +186,7 @@ function UserDetails() {
   };
 
   const handleToggleChange = (value) => {
-    // console.log('Selected:', value); // either 'Balance' or 'Deposit'
+    console.log('value:', value,);
     setSelected(value);
   };
 
@@ -206,15 +208,15 @@ function UserDetails() {
             </div>
             <div className="border border-gray-300 p-2 rounded-md">
               <p className="text-lg font-semibold text-gray-700">Balance:</p>
-              <p className="text-gray-600">${user.balance}</p>
+              <p className="text-gray-600">Pkr {user.balance}</p>
             </div>
             <div className="border border-gray-300 p-2 rounded-md">
               <p className="text-lg font-semibold text-gray-700">Deposits:</p>
-              <p className="text-gray-600">${user.deposit}</p>
+              <p className="text-gray-600">Pkr {user.deposit}</p>
             </div>
             <div className="border border-gray-300 p-2 rounded-md">
               <p className="text-lg font-semibold text-gray-700">Withdrawals:</p>
-              <p className="text-gray-600">${user.totalWithdraw}</p>
+              <p className="text-gray-600">Pkr {user.totalWithdraw}</p>
             </div>
             {/* <div className="border border-gray-300 p-2 rounded-md">
               <p className="text-lg font-semibold text-gray-700">Transactions:</p>
@@ -222,11 +224,11 @@ function UserDetails() {
             </div> */}
             <div className="border border-gray-300 p-2 rounded-md">
               <p className="text-lg font-semibold text-gray-700">Total Invest:</p>
-              <p className="text-gray-600">${user.totalInvest}</p>
+              <p className="text-gray-600">Pkr {user.totalInvest}</p>
             </div>
             <div className="border border-gray-300 p-2 rounded-md">
               <p className="text-lg font-semibold text-gray-700">Total Referral Commission:</p>
-              <p className="text-gray-600">${detail.totalTeamCommission}</p>
+              <p className="text-gray-600">Pkr {detail.totalTeamCommission}</p>
             </div>
           </div>
 
@@ -263,7 +265,7 @@ function UserDetails() {
             {modalType === "addBalance" && (
               <div>
                 <h2 className="text-2xl font-bold mb-4">Add Balance</h2>
-                <ToggleSwitch onChange={handleToggleChange} />
+                <ToggleSwitch value={selected} onChange={setSelected} />
                 <input
                   value={add}
                   onChange={(e) => setAdd(e.target.value)}
@@ -282,7 +284,7 @@ function UserDetails() {
             {modalType === "deductBalance" && (
               <div>
                 <h2 className="text-2xl font-bold mb-4">Deduct Balance</h2>
-                <ToggleSwitch onChange={handleToggleChange} />
+                <ToggleSwitch value={selected} onChange={setSelected} />
                 <input
                   value={deduct}
                   onChange={(e) => setDeduct(e.target.value)}

@@ -121,7 +121,7 @@ export default function PromoCode() {
                                                     {promo.code}
                                                 </td>
                                                 <td className="p-3 border-b">
-                                                    ${promo.amount}
+                                                    Pkr {promo.amount}
                                                 </td>
                                                 <td className="p-3 border-b">
                                                     {promo.claimBy.length} users
