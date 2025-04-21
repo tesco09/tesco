@@ -269,7 +269,7 @@ function UserDetails() {
                 <input
                   value={add}
                   onChange={(e) => setAdd(e.target.value)}
-                  type="number"
+                  type="text"
                   placeholder="Enter amount"
                   className="border border-gray-300 p-2 w-full rounded-md mb-4"
                 />
@@ -288,7 +288,7 @@ function UserDetails() {
                 <input
                   value={deduct}
                   onChange={(e) => setDeduct(e.target.value)}
-                  type="number"
+                  type="text"
                   placeholder="Enter amount"
                   className="border border-gray-300 p-2 w-full rounded-md mb-4"
                 />

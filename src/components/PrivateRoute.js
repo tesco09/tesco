@@ -13,6 +13,9 @@ const PrivateRoute = () => {
             const id = localStorage.getItem("id");
             const response = await fetch(`${BaseUrl}/register/${id}`);
             const data = await response.json();
+            if (data.ban === true) {
+                alert('You account has been banned');
+            }
             setIsBan(data.ban);
             // console.log("User data:", data.ban);
         } catch (error) {
