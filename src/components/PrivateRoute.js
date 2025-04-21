@@ -14,7 +14,7 @@ const PrivateRoute = () => {
             const response = await fetch(`${BaseUrl}/register/${id}`);
             const data = await response.json();
             setIsBan(data.ban);
-            console.log("User data:", data.ban);
+            // console.log("User data:", data.ban);
         } catch (error) {
             console.error("Failed to fetch user data:", error);
         } finally {

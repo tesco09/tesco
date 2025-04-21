@@ -100,28 +100,22 @@ export const daysDifference = (end) => {
 export const sendEmail = async (email, subject, text) => {
 
     const url = `${BaseUrl}/send-email`;
-    const emailData = {
-        email: email,
-        text: text,
-        subject: subject,
-    };
 
     try {
         const response = await fetch(url, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(emailData),
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, subject, text }),
         });
 
         if (response.ok) {
             console.log("Email sent successfully");
         } else {
-            console.log("Failed to send email");
+            const errorRes = await response.json();
+            console.error("Failed to send email:", errorRes.message || errorRes);
         }
     } catch (error) {
-        console.log("Error sending email");
+        console.error("Error sending email:", error);
     }
 };
 

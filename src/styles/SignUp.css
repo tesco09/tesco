@@ -20,10 +20,11 @@
 }  
   .signup-container h2 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom:20px;
     color: #333;
     width: 70%;
     text-align: left;
+    font-size: 24px;
   }
   
   .signup-form {

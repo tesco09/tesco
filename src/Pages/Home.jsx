@@ -157,6 +157,10 @@ function Home() {
                 <LoadingSpinner />
             ) : (
                 <div className="flex flex-col items-center w-full">
+                    {/* <div className='flex flex-row items-center w-[90%]'>
+                        <span>JOIN OFFICIAL WHATSAPP GROUP</span>
+                        <img src={require('../Assets/image/whatsapp.png')} className='h-10 w-10'/>
+                    </div> */}
                     <span className="pt-[10%] text-[12px] font-bold w-[90%] text-black text-center">
                         Important Notice🚨🚨
                     </span>
@@ -233,7 +237,7 @@ function Home() {
                         <li>تمام معلومات اور بروقت اسپورٹ کے لئے ایپ میں آفیشل گروپ کا لنگ موجود ہے. اسے لازمی جوائن کر لیں۔</li>
                     </ol>
 
-                    <p className="mt-4 text-center text-black font-semibold">Thank you Tesco Community</p>
+                    <p className="mt-0 text-center text-black font-semibold mb-0">Thank you Tesco Community</p>
                     {/* <button onClick={chatOnWhatsapp} type="button" className="flex flex-row items-center justify-center w-full h-[50px] rounded-md bg-[#347928] mt-2 mb-2">
                         <span className="text-white text-[14px] font-medium ml-2 text-center w-full">Chat with us</span>
                     </button> */}

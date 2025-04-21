@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import Modal from '../components/ModalChart';
 
 function Deposit() {
+
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         bankName: '',
@@ -18,7 +19,10 @@ function Deposit() {
     });
     const [openModal, setOpenModal] = useState(true);
     const [uploading, setUploading] = useState(false);
-    const banks = ['Alfalah', 'Easypaisa', 'Jazzcash', 'HBL', 'Meezan Bank', 'MCB', 'NIB Bank', 'Standard Chartered Bank', 'UBL'];
+    const banks = ['Alfalah', 'Easypaisa',
+        'Jazzcash', 'HBL', 'Meezan Bank',
+        'MCB', 'NIB Bank', 'Standard Chartered Bank',
+        'UBL'];
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -95,13 +99,19 @@ function Deposit() {
             const result = await response.json();
             // console.log('Category added:', result);
             if (response.ok) {
-                await sendEmail('sajimayo786@gmail.com', 'Deposit Request', `You have new Deposit request of amount ${formData.amount} Rs.`)
+                await sendEmail(
+                    'sajimayo786@gmail.com',
+                    'Deposit Request',
+                    `You have a new deposit request of amount ${formData.amount} Rs.`
+                );
                 navigate('/home');
                 alert('Request Sent');
+            } else {
+                alert(`Failed: ${result.message || 'Unknown error occurred'}`);
             }
         } catch (error) {
-            console.error('Error submitting category:', error);
-            alert('Failed to submit category');
+            console.error('Error submitting Deposit:', error);
+            alert('Failed to submit Deposit');
         } finally {
             setUploading(false);
         }
@@ -203,8 +213,7 @@ function Deposit() {
                                 id="paymentProof"
                                 name="paymentProof"
                                 onChange={handleFileChange}
-                                // required
-                                className="hidden" // hide the native input
+                                className="hidden"
                             />
                             <label
                                 htmlFor="paymentProof"
@@ -232,7 +241,6 @@ function Deposit() {
                     <button type="submit" className="submit-button">Deposit</button>
                 </form>
             </div>}
-
             <Modal isOpen={openModal} onClose={() => { setOpenModal(false); }}>
                 <div className="max-w-xl flex flex-col items-center mx-auto p-2">
                     <h2 className="text-xl font-bold text-center mb-4 text-[#347928]">DEPOSIT INSTRUCTION🚨</h2>

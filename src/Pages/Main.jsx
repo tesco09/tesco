@@ -1,5 +1,5 @@
 import React from "react";
-import appIcon from "../Assets/image/appIcon.png";
+import appIcon from "../Assets/image/appIcon.jpg";
 
 export default function Main() {
   return (

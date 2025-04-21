@@ -50,19 +50,19 @@ function Commission() {
     const handleSubmit = async () => {
         try {
             setLoading(true);
+            console.log("Updated settings:", status, commissionId);
             const response = await fetch(`${BaseUrl}/commission/${commissionId}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    status,
-                    ...commissions,
+                    status: status
                 }),
             });
-    
+
             if (!response.ok) throw new Error("Failed to update settings");
-    
+
             const data = await response.json();
             alert("Settings updated successfully!");
             console.log("Updated settings:", data);
@@ -126,6 +126,7 @@ function Commission() {
                 {/* Submit Button */}
                 <div className="flex justify-end">
                     <button
+                        type="button"
                         onClick={handleSubmit}
                         className="bg-blue-600 text-white px-4 py-2 rounded-md"
                     >
