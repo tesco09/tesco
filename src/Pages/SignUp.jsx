@@ -177,7 +177,7 @@ function SignUp() {
                             type="text"
                             id="referralCode"
                             name="referralCode"
-                            placeholder="Enter referral code (optional)"
+                            placeholder="Enter referral code"
                             value={formData.referralCode}
                             onChange={handleChange}
                         />

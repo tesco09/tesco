@@ -36,11 +36,17 @@ export default function Invest() {
 
     const handleSubmit = async () => {
         setLoading(true);
-        const id = localStorage.getItem('id');
+        const userId = localStorage.getItem('id');
+        console.log('select:', select.id, userId);
+        if (!userId) {
+            alert('User not logged in');
+            setLoading(false);
+            return;
+        }
         const date = new Date();
         const endDate = await addThirtyDays(date, select.days);
         try {
-            const response = await fetch(`${BaseUrl}/addPlan/${id}`, {
+            const response = await fetch(`${BaseUrl}/addPlan/${userId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -58,6 +64,7 @@ export default function Invest() {
                 navigate('/invest-success');
             } else {
                 alert('error buying plan');
+                console.log('message:', response.message);
             }
         } catch (e) {
             console.log('error buying plan');
