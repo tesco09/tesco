@@ -104,7 +104,7 @@ function Deposit() {
                     'Deposit Request',
                     `You have a new deposit request of amount ${formData.amount} Rs.`
                 );
-                navigate('/home');
+                navigate('/transactions/Deposits');
                 alert('Request Sent');
             } else {
                 alert(`Failed: ${result.message || 'Unknown error occurred'}`);

@@ -85,6 +85,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/offers" element={<Offers />} />
             <Route path="/transactions" element={<Transactions />} />
+            <Route path="/transactions/:type" element={<Transactions />} />
             <Route path="/transaction-detail/:type/:id" element={<TransactionDetail />} />
             <Route path="/promo-code" element={<PromoCode />} />
           </Route>

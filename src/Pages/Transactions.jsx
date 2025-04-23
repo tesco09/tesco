@@ -1,16 +1,17 @@
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { BaseUrl, formatDate, timeAgo } from "../Assets/Data";
 import LoadingSpinner from "../components/LoadingSpinner";
 
 export default function Transactions() {
     const navigate = useNavigate();
+    const { type } = useParams();
     const [notifications, setNotifications] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [category, setCategory] = useState("Transactions");
+    const [category, setCategory] = useState(type || "Transactions");
     const [selectedDate, setSelectedDate] = useState("");
 
     const fetchData = async () => {
@@ -30,7 +31,7 @@ export default function Transactions() {
                     Deposits: jsonDeposit,
                     Withdraw: jsonWithdraw,
                 });
-                setFilteredData(json); // Default to Transactions
+                setFilteredData(json); 
             } else {
                 console.error("Error fetching notifications:", json.message);
             }
@@ -44,6 +45,14 @@ export default function Transactions() {
     useEffect(() => {
         fetchData();
     }, []);
+
+    // Update category and filteredData when type changes
+    useEffect(() => {
+        if (type) {
+            setCategory(type);
+            setFilteredData(notifications[type] || []);
+        }
+    }, [type, notifications]);
 
     const handleCategoryChange = (e) => {
         const selectedCategory = e.target.value;
@@ -111,7 +120,7 @@ export default function Transactions() {
                                 </span>
                             </div>
                         ))
-                    ) : filteredData.length > 0 && category !== 'Transactions' ?
+                    ) : filteredData.length > 0 && category !== 'Transactions' ? (
                         filteredData.map((item, index) => (
                             <div
                                 onClick={() => navigate(`/transaction-detail/${item?.type}/${item?.requestId}`)}
@@ -130,11 +139,12 @@ export default function Transactions() {
                                     <FontAwesomeIcon icon={faChevronRight} className="text-sm text-gray-500" />
                                 </div>
                             </div>
-                        )) : (
-                            <span className="text-gray-500 text-[14px] mt-4">
-                                No data available for the selected filters.
-                            </span>
-                        )}
+                        ))
+                    ) : (
+                        <span className="text-gray-500 text-[14px] mt-4">
+                            No data available for the selected filters.
+                        </span>
+                    )}
                 </div>
             )}
         </>

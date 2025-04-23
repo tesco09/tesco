@@ -209,7 +209,7 @@ export default function Withdraw() {
                 await sendEmail('sajimayo786@gmail.com', 'Withdraw Request', `You have new Withdraw request of amount ${withdrawAmount} Rs.`)
                 // console.log('Withdrawal created successfully:', responseData);
                 alert('Withdrawal successful!');
-                navigate('/withdraw-sucess'); // Redirect to success page
+                navigate('/transactions/Withdraw'); 
             } else {
                 const error = await res.text();
                 console.error('Error creating withdrawal:', error);
