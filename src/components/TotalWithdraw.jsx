@@ -35,7 +35,6 @@ export default function TotalWithdraw() {
                 ) : (
                     <div className="dashboard w-[90%] md:w-[80%] md:ml-[20%]">
                         <h2 className="text-2xl font-semibold mb-4">Total Withdrawals</h2>
-
                         {/* Desktop View */}
                         <div className="hidden sm:block">
                             <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
@@ -43,6 +42,7 @@ export default function TotalWithdraw() {
                                     <tr className="bg-gray-100 text-left">
                                         <th className="p-3 border-b">Name</th>
                                         <th className="p-3 border-b">Bank</th>
+                                        <th className="p-3 border-b">Account No.</th>
                                         <th className="p-3 border-b">Amount</th>
                                         <th className="p-3 border-b">Status</th>
                                         <th className="p-3 border-b">Date</th>
@@ -61,13 +61,14 @@ export default function TotalWithdraw() {
                                             <tr key={idx} className="hover:bg-gray-50 transition">
                                                 <td className="p-3 border-b">{user.name}</td>
                                                 <td className="p-3 border-b">{user.bank}</td>
+                                                <td className="p-3 border-b">{user?.accountNumber}</td>
                                                 <td className="p-3 border-b">{user.amount}</td>
                                                 <td className="p-3 border-b">
-                                                    {user.verify
-                                                        ? 'Verified'
+                                                    {user.pending && !user.scam
+                                                        ? 'Pending'
                                                         : user.scam
                                                             ? 'Rejected'
-                                                            : 'Pending'}
+                                                            : 'Verified'}
                                                 </td>
                                                 <td className="p-3 border-b">
                                                     {new Date(user.timestamp).toLocaleDateString()}

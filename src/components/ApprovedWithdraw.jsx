@@ -44,6 +44,7 @@ export default function ApprovedWithdraw() {
                                     <tr className="bg-gray-100 text-left">
                                         <th className="p-3 border-b">Name</th>
                                         <th className="p-3 border-b">Bank</th>
+                                        <th className="p-3 border-b">Account No.</th>
                                         <th className="p-3 border-b">Amount</th>
                                         <th className="p-3 border-b">Status</th>
                                         <th className="p-3 border-b">Date</th>
@@ -62,13 +63,14 @@ export default function ApprovedWithdraw() {
                                             <tr key={idx} className="hover:bg-gray-50 transition">
                                                 <td className="p-3 border-b">{user.name}</td>
                                                 <td className="p-3 border-b">{user.bank}</td>
+                                                <td className="p-3 border-b">{user?.accountNumber}</td>
                                                 <td className="p-3 border-b">{user.amount}</td>
                                                 <td className="p-3 border-b">
-                                                    {user.verify
-                                                        ? 'Verified'
+                                                    {user.pending && !user.scam
+                                                        ? 'Pending'
                                                         : user.scam
-                                                        ? 'Rejected'
-                                                        : 'Pending'}
+                                                            ? 'Rejected'
+                                                            : 'Verified'}
                                                 </td>
                                                 <td className="p-3 border-b">
                                                     {new Date(user.timestamp).toLocaleDateString()}
@@ -118,8 +120,8 @@ export default function ApprovedWithdraw() {
                                             {user.verify
                                                 ? 'Verified'
                                                 : user.scam
-                                                ? 'Rejected'
-                                                : 'Pending'}
+                                                    ? 'Rejected'
+                                                    : 'Pending'}
                                         </p>
                                         <p className="text-sm font-medium">
                                             <strong>Date:</strong>{" "}

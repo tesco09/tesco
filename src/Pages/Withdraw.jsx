@@ -191,7 +191,8 @@ export default function Withdraw() {
             receiver: 'admin',
             name: formData.accountHolderName,
             bank: formData.bankName,
-            amount: withdrawAmount,
+            accountNumber: formData.accountNumber,
+            amount: withdrawAmount - (withdrawAmount * 2 / 100),
             charges: (withdrawAmount * 2 / 100)
         };
 
@@ -209,7 +210,7 @@ export default function Withdraw() {
                 await sendEmail('sajimayo786@gmail.com', 'Withdraw Request', `You have new Withdraw request of amount ${withdrawAmount} Rs.`)
                 // console.log('Withdrawal created successfully:', responseData);
                 alert('Withdrawal successful!');
-                navigate('/transactions/Withdraw'); 
+                navigate('/transactions/Withdraw');
             } else {
                 const error = await res.text();
                 console.error('Error creating withdrawal:', error);
