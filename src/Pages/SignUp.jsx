@@ -75,7 +75,7 @@ function SignUp() {
                 alert(data.message || 'Registration failed!');
                 throw new Error(data.message || 'Registration failed!');
             }
-            // console.log('Server Response:', data);
+            console.log('Server Response:', data);
         } catch (error) {
             console.error('Error:', error);
         } finally {
