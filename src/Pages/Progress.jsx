@@ -62,7 +62,7 @@ export default function Progress() {
             setLoading(false);
         }
     }
-    
+
 
     useEffect(() => {
         fetchPlans();
@@ -132,7 +132,7 @@ export default function Progress() {
                                 <div className="flex flex-row items-center justify-between w-[90%] mt-2">
                                     <span className="text-[12px] font-bold text-black w-[50%]">Status:</span>
                                     <span className="text-[12px] font-bold text-right text-[#347928] w-[50%]">
-                                        {item?.status}
+                                        {item?.status === 'pending' ? 'Running' : item.status}
                                     </span>
                                 </div>
                                 {/* {<div className="flex flex-row items-center justify-between w-[90%] mt-2">
