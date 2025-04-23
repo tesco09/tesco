@@ -140,7 +140,7 @@ export default function Progress() {
                                 </div>} */}
                                 {item?.status === 'pending' && (
                                     <span className="px-2 py-1 border-[1.5px] border-[#347928] rounded-md text-[12px] text-[#347928] self-start ml-[5%] mt-2">
-                                        Pending
+                                        Running
                                     </span>
                                 )}
                                 {item?.status === 'ready' && (
