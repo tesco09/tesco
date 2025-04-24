@@ -4,15 +4,12 @@ export const BaseUrl = "https://tesco-api-production.up.railway.app";
 // export const BaseUrl = "http://localhost:4000";
 
 const id = localStorage.getItem('id');
-
 export const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/da9jxjnlv/image/upload";
 
 export const fetchData = async () => {
     try {
-        // console.log('id:', id);
         const response = await fetch(`${BaseUrl}/register/${id}`);
         const json = await response.json();
-        // console.log('json:', json);
         return json;
     } catch (e) {
         console.log('error fetching Data...', e);

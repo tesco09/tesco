@@ -32,7 +32,7 @@ export default function Withdraw() {
         accountNumber: ''
     });
 
-    const banks = ['Alfalah', 'Easypaisa', 'Jazzcash', 'HBL', 'Meezan Bank', 'MCB', 'NIB Bank', 'Standard Chartered Bank', 'UBL'];
+    const banks = ['Alfalah', 'Easypaisa', 'Jazzcash', 'HBL', 'Meezan Bank', 'MCB', 'NIB Bank', 'Standard Chartered Bank', 'UBL', 'Sada pay', 'Naya pay', 'U paisa'];
 
     const userId = localStorage.getItem('id');
 
@@ -151,13 +151,18 @@ export default function Withdraw() {
         const id = localStorage.getItem('id');
         const endpoint = `${BaseUrl}/withdraw`;
         setLoading(true);
-        const lastWithdrawal = await fetchLastWithdrawal();
-        const lastWithdrawDate = new Date(lastWithdrawal?.timestamp);
-        const currentDate = new Date();
-        const timeDifference = currentDate - lastWithdrawDate;
-        const hoursDifference = Math.floor(timeDifference / (1000 * 60 * 60));
-        if (lastWithdrawal && hoursDifference < 24) {
-            alert(`You can only withdraw once every 24 hours. Please try again later.`);
+        const withdrawals = await fetchLastWithdrawal();
+        console.log('log:', withdrawals);
+        const now = new Date();
+        const recentWithdrawals = withdrawals.filter(w => {
+            const withdrawalTime = new Date(w.timestamp);
+            const timeDiffHours = (now - withdrawalTime) / (1000 * 60 * 60);
+            return timeDiffHours < 24;
+        });
+
+        if (recentWithdrawals.length >= 2) {
+            alert('You can only withdraw twice every 24 hours. Please try again later.');
+            setLoading(false);
             return;
         }
 
