@@ -189,9 +189,27 @@ function UserDetails() {
     }
   };
 
-  const handleToggleChange = (value) => {
-    console.log('value:', value,);
-    setSelected(value);
+  const handleDeletePlan = async (id) => {
+    const confirmed = window.confirm('Are you sure to delete plan');
+    if (!confirmed) return;
+    try {
+      setLoading(true);
+      const response = await fetch(`${BaseUrl}/myplan/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.message || 'Failed to delete plan');
+      }
+
+      const result = await response.json();
+      console.log('msg:', result.message);
+    } catch (error) {
+      console.error('Error:', error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
 
@@ -284,7 +302,8 @@ function UserDetails() {
                     <p className="text-gray-600">Amount: Pkr {plan.investment}</p>
                     <p className="text-gray-600">Daily Profit: Pkr {plan.dailyProfit}</p>
                     <button
-                      // onClick={() => handleDeletePlan(plan.id)}
+                      type="button"
+                      onClick={() => handleDeletePlan(plan._id)}
                       className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md shadow-md mt-4"
                     >
                       Delete
