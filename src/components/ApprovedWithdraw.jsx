@@ -113,6 +113,9 @@ export default function ApprovedWithdraw() {
                                             <strong>Bank:</strong> {user.bank}
                                         </p>
                                         <p className="text-sm font-medium">
+                                            <strong>Account No:</strong> {user?.accountNumber}
+                                        </p>
+                                        <p className="text-sm font-medium">
                                             <strong>Amount:</strong> {user.amount}
                                         </p>
                                         <p className="text-sm font-medium">
@@ -162,6 +165,9 @@ export default function ApprovedWithdraw() {
                             </span>
                             <span className="w-full text-[14px] font-medium">
                                 Bank: {userDetail.bank}
+                            </span>
+                            <span className="w-full text-[14px] font-medium">
+                                Account No: {userDetail?.accountNumber}
                             </span>
                             <span className="w-full text-[14px] font-medium">
                                 Amount: {userDetail.amount}

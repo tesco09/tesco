@@ -16,6 +16,7 @@ function UserDetails() {
   const [loading, setLoading] = useState(false);
   const [modalType, setModalType] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activePlans, setActivePlans] = useState([]); // State for active plans
   const [add, setAdd] = useState(null);
   const [deduct, setDeduct] = useState(null);
   const [selected, setSelected] = useState('Balance');
@@ -37,8 +38,11 @@ function UserDetails() {
       const json = await response.json();
       const detailresponse = await fetch(`${BaseUrl}/details/${id}`);
       const detailjson = await detailresponse.json();
+      const plansResponse = await fetch(`${BaseUrl}/myplan/${id}`);
+      const plansJson = await plansResponse.json();
       setUser(json);
       setDetail(detailjson);
+      setActivePlans(plansJson);
     } catch (e) {
       console.log('error fetching data...', e);
     } finally {
@@ -258,6 +262,39 @@ function UserDetails() {
             >
               {user.ban ? 'Unban User' : 'Ban User'}
             </button>
+          </div>
+
+          <div className="w-full mt-8 bg-white p-6 rounded-lg shadow-md">
+            <h2 className="text-2xl font-bold mb-4">Active Plans</h2>
+            {activePlans.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {activePlans.map((plan) => (
+                  <div
+                    key={plan.id}
+                    className="border border-gray-300 p-4 rounded-md shadow-md flex flex-col items-center"
+                  >
+                    {/* <img
+                      src={plan.image}
+                      alt={plan.name}
+                      className="w-24 h-24 object-cover rounded-md mb-4"
+                    /> */}
+                    <p className="text-lg font-semibold text-gray-700">
+                      {plan.name}
+                    </p>
+                    <p className="text-gray-600">Amount: Pkr {plan.investment}</p>
+                    <p className="text-gray-600">Daily Profit: Pkr {plan.dailyProfit}</p>
+                    <button
+                      // onClick={() => handleDeletePlan(plan.id)}
+                      className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md shadow-md mt-4"
+                    >
+                      Delete
+                    </button>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-gray-600">No active plans found.</p>
+            )}
           </div>
 
           {/* Modal */}
