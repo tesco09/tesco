@@ -128,7 +128,7 @@ function Deposit() {
                         <span>Bank Name:</span>
                     </div>
                     <div className="border rounded-md p-2 flex flex-row items-center justify-between">
-                        <span className='text-[14px] text-black font-bold'>Easypaisa</span>
+                        <span className='text-[14px] text-black font-bold'>Jazzcash</span>
                         <button onClick={() => handleCopy('Easypaisa')}>
                             <FontAwesomeIcon icon={faCopy} className='text-gray-500 text-[20px]' />
                         </button>
@@ -137,8 +137,8 @@ function Deposit() {
                         <span>Account Holder Name:</span>
                     </div>
                     <div className="border rounded-md p-2 flex flex-row items-center justify-between">
-                        <span className='text-[14px] text-black font-bold'>Kashif Ali</span>
-                        <button onClick={() => handleCopy('Mohammed Kashif')}>
+                        <span className='text-[14px] text-black font-bold'>Mohammed Abbas</span>
+                        <button onClick={() => handleCopy('Mohammed Abbas')}>
                             <FontAwesomeIcon icon={faCopy} className='text-gray-500 text-[20px]' />
                         </button>
                     </div>
@@ -146,8 +146,8 @@ function Deposit() {
                         <span>Account Number:</span>
                     </div>
                     <div className="border rounded-md p-2 flex flex-row items-center justify-between">
-                        <span className='text-[14px] text-black font-bold'>03248008331</span>
-                        <button onClick={() => handleCopy('03248008331')}>
+                        <span className='text-[14px] text-black font-bold'>03254703579</span>
+                        <button onClick={() => handleCopy('03254703579')}>
                             <FontAwesomeIcon icon={faCopy} className='text-gray-500 text-[20px]' />
                         </button>
                     </div>
