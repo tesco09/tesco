@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Deposit.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
@@ -19,6 +19,7 @@ function Deposit() {
     });
     const [openModal, setOpenModal] = useState(true);
     const [uploading, setUploading] = useState(false);
+    const [accounts, setAccounts] = useState([]);
     const [selected, setSelected] = useState('Jazzcash');
     const banks = ['Alfalah', 'Easypaisa',
         'Jazzcash', 'HBL', 'Meezan Bank',
@@ -44,6 +45,24 @@ function Deposit() {
         navigator.clipboard.writeText(text);
         alert(`${text} copied to clipboard!`);
     };
+
+
+    const fetchAccounts = async () => {
+        try {
+            setUploading(true);
+            const response = await fetch(`${BaseUrl}/admin-account`);
+            const json = await response.json();
+            setAccounts(json);
+        } catch (e) {
+            console.log('error fetching accounts', e);
+        } finally {
+            setUploading(false);
+        }
+    }
+
+    useEffect(() => {
+        fetchAccounts();
+    }, []);
 
     const handleSubmit = async (e) => {
 
@@ -130,19 +149,28 @@ function Deposit() {
                     </div>
                     <div className="border rounded-md p-2">
                         <select
-                            onChange={(e) => { setSelected(e.target.value) }}
+                            onChange={(e) => {
+                                const selectedAccount = accounts.find((item) => item._id === e.target.value);
+                                console.log('select', selectedAccount);
+                                setSelected(selectedAccount);
+                            }}
+                            value={selected?._id || ''} // controlled by selected account _id
                             className="w-full p-2 bg-gray-50 rounded-md text-black focus:outline-none"
                         >
-                            <option value="Jazzcash" selected>Jazzcash</option>
-                            {/* <option value="Easypaisa">Easypaisa</option> */}
+                            <option value="" disabled>Select a bank</option>
+                            {accounts.map((item) => (
+                                <option key={item._id} value={item._id}>
+                                    {item.bank}
+                                </option>
+                            ))}
                         </select>
                     </div>
                     <div className="detail mt-4">
                         <span>Account Holder Name:</span>
                     </div>
                     <div className="border rounded-md p-2 flex flex-row items-center justify-between">
-                        <span className='text-[14px] text-black font-bold'>{selected === 'Jazzcash' ? 'Mohammed Abbas' : selected === 'Easypaisa' ? 'Kashif Ali' : ''}</span>
-                        <button onClick={() => handleCopy(selected === 'Jazzcash' ? 'Mohammed Abbas' : selected === 'Easypaisa' ? 'Kashif Ali' : '')}>
+                        <span className='text-[14px] text-black font-bold'>{selected?.name}</span>
+                        <button onClick={() => handleCopy(selected?.name)}>
                             <FontAwesomeIcon icon={faCopy} className='text-gray-500 text-[20px]' />
                         </button>
                     </div>
@@ -150,8 +178,8 @@ function Deposit() {
                         <span>Account Number:</span>
                     </div>
                     <div className="border rounded-md p-2 flex flex-row items-center justify-between">
-                        <span className='text-[14px] text-black font-bold'>{selected === 'Jazzcash' ? '03254703579' : selected === 'Easypaisa' ? '03248008331' : ''}</span>
-                        <button onClick={() => handleCopy(selected === 'Jazzcash' ? '03254703579' : selected === 'Easypaisa' ? '03248008331' : '')}>
+                        <span className='text-[14px] text-black font-bold'>{selected?.accountNumber}</span>
+                        <button onClick={() => handleCopy(selected?.accountNumber)}>
                             <FontAwesomeIcon icon={faCopy} className='text-gray-500 text-[20px]' />
                         </button>
                     </div>

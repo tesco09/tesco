@@ -29,6 +29,7 @@ import UnverifiedUsers from "../components/UnverifiedUser";
 import Commission from "../components/Commission";
 import AdminNotification from "../components/AdminNotification";
 import { useNavigate } from "react-router-dom";
+import AddAccount from "../components/AddAccount";
 
 ChartJS.register(
     CategoryScale,
@@ -379,6 +380,15 @@ function AdminPanel() {
                             </li>
                         </a>
                         <li
+                            onClick={() => {
+                                setSelectedTab("AddAccount");
+                                setSidebarOpen(false);
+                            }}
+                            className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
+                        >
+                            Add Account
+                        </li>
+                        <li
                             onClick={handleLogout}
                             className="px-4 py-2 hover:bg-gray-700 cursor-pointer"
                         >
@@ -593,6 +603,7 @@ function AdminPanel() {
                             {selectedTab === "ApprovedDeposit" && <ApprovedDeposit />}
                             {selectedTab === "UnverifiedUser" && <UnverifiedUsers />}
                             {selectedTab === "Commission" && <Commission />}
+                            {selectedTab === "AddAccount" && <AddAccount />}
                             {selectedTab === "AdminNotification" && (
                                 <AdminNotification />
                             )}
