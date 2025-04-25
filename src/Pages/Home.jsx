@@ -173,6 +173,9 @@ function Home() {
                             <img src={require('../Assets/image/whatsapp.png')} className='h-8 w-8' />
                         </button>
                     </div>
+                    <span className='text-[16px] text-black text-center font-normal mr-2 w-[90%] mt-2 mb-2 font-[JameelNoori]'dir="rtl">
+                    روزانہ 3 دفعہ  🥳Promo Code حاصل کرنے کے لیے Official Group لازمی جوائن کر لیں✅
+                    </span>
                     <div className="home-container md:mb-4 mb-[25%] md:mt-[5%] mt-[5%]">
                         <div className="flex flex-row items-center justify-center mb-4 w-[70%] mt-4">
                             {renderBalanceCard(

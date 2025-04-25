@@ -19,6 +19,7 @@ function Deposit() {
     });
     const [openModal, setOpenModal] = useState(true);
     const [uploading, setUploading] = useState(false);
+    const [selected, setSelected] = useState('Jazzcash');
     const banks = ['Alfalah', 'Easypaisa',
         'Jazzcash', 'HBL', 'Meezan Bank',
         'MCB', 'NIB Bank', 'Standard Chartered Bank',
@@ -127,18 +128,21 @@ function Deposit() {
                     <div className="detail">
                         <span>Bank Name:</span>
                     </div>
-                    <div className="border rounded-md p-2 flex flex-row items-center justify-between">
-                        <span className='text-[14px] text-black font-bold'>Jazzcash</span>
-                        <button onClick={() => handleCopy('Easypaisa')}>
-                            <FontAwesomeIcon icon={faCopy} className='text-gray-500 text-[20px]' />
-                        </button>
+                    <div className="border rounded-md p-2">
+                        <select
+                            onChange={(e) => { setSelected(e.target.value) }}
+                            className="w-full p-2 bg-gray-50 rounded-md text-black focus:outline-none"
+                        >
+                            <option value="Jazzcash" selected>Jazzcash</option>
+                            <option value="Easypaisa">Easypaisa</option>
+                        </select>
                     </div>
                     <div className="detail mt-4">
                         <span>Account Holder Name:</span>
                     </div>
                     <div className="border rounded-md p-2 flex flex-row items-center justify-between">
-                        <span className='text-[14px] text-black font-bold'>Mohammed Abbas</span>
-                        <button onClick={() => handleCopy('Mohammed Abbas')}>
+                        <span className='text-[14px] text-black font-bold'>{selected === 'Jazzcash' ? 'Mohammed Abbas' : selected === 'Easypaisa' ? 'Kashif Ali' : ''}</span>
+                        <button onClick={() => handleCopy(selected === 'Jazzcash' ? 'Mohammed Abbas' : selected === 'Easypaisa' ? 'Kashif Ali' : '')}>
                             <FontAwesomeIcon icon={faCopy} className='text-gray-500 text-[20px]' />
                         </button>
                     </div>
@@ -146,8 +150,8 @@ function Deposit() {
                         <span>Account Number:</span>
                     </div>
                     <div className="border rounded-md p-2 flex flex-row items-center justify-between">
-                        <span className='text-[14px] text-black font-bold'>03254703579</span>
-                        <button onClick={() => handleCopy('03254703579')}>
+                        <span className='text-[14px] text-black font-bold'>{selected === 'Jazzcash' ? '03254703579' : selected === 'Easypaisa' ? '03248008331' : ''}</span>
+                        <button onClick={() => handleCopy(selected === 'Jazzcash' ? '03254703579' : selected === 'Easypaisa' ? '03248008331' : '')}>
                             <FontAwesomeIcon icon={faCopy} className='text-gray-500 text-[20px]' />
                         </button>
                     </div>

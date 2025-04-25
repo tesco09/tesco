@@ -392,7 +392,7 @@ function AdminPanel() {
 
     const DashboardCard = ({ icon, title, value, bgColor, iconColor, tab }) => (
         <div
-            onClick={() => { setSelectedTab(tab) }}
+            onClick={() => { tab && setSelectedTab(tab) }}
             className={`card p-4 flex flex-row rounded-md shadow-md transform transition-transform duration-300 hover:scale-105 items-center`}
         >
             <div className={`flex flex-col w-[10%] py-2 items-center justify-center `}>
@@ -517,7 +517,7 @@ function AdminPanel() {
                         value={dashboardData?.withdrawCharges}
                         bgColor="bg-purple-100"
                         iconColor="text-pink-500"
-                        tab="TotalWithdraw"
+                    // tab="TotalWithdraw"
                     />
                 </div>
 
