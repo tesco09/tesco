@@ -180,7 +180,7 @@ function Home() {
                         <div className="flex flex-row items-center justify-center mb-4 w-[70%] mt-4">
                             {renderBalanceCard(
                                 'Total Balance',
-                                userData?.balance,
+                                userData?.balance?.toFixed(2),
                                 !showBalance,
                                 () => toggleVisibility(setShowBalance)
                             )}
