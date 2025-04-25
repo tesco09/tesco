@@ -134,7 +134,7 @@ function Deposit() {
                             className="w-full p-2 bg-gray-50 rounded-md text-black focus:outline-none"
                         >
                             <option value="Jazzcash" selected>Jazzcash</option>
-                            <option value="Easypaisa">Easypaisa</option>
+                            {/* <option value="Easypaisa">Easypaisa</option> */}
                         </select>
                     </div>
                     <div className="detail mt-4">

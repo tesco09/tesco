@@ -393,8 +393,7 @@ function AdminPanel() {
     const DashboardCard = ({ icon, title, value, bgColor, iconColor, tab }) => (
         <div
             onClick={() => { tab && setSelectedTab(tab) }}
-            className={`card p-4 flex flex-row rounded-md shadow-md transform transition-transform duration-300 hover:scale-105 items-center`}
-        >
+            className={`card p-4 flex flex-row rounded-md shadow-md transform transition-transform duration-300 hover:scale-105 items-center`}>
             <div className={`flex flex-col w-[10%] py-2 items-center justify-center `}>
                 <FontAwesomeIcon icon={icon} className={`${iconColor} text-2xl mb-2 ${bgColor} p-2 rounded-md`} />
             </div>
