@@ -60,27 +60,21 @@ function UserDetails() {
 
 
   const handleAddBalance = async () => {
+    const amountToAdd = parseFloat(add);
 
-    console.log('select:', selected);
-    let newBalance = 0;
-    if (selected === 'Balance') {
-      newBalance = await parseFloat(user.balance) + parseFloat(add);
-    } else if (selected === 'Deposit') {
-      newBalance = await parseFloat(user.deposit) + parseFloat(add);
-    }
-
-    let data = {};
-    if (selected === 'Balance') {
-      data = { balance: newBalance, }
-    } else if (selected === 'Deposit') {
-      data = { deposit: newBalance, }
-    }
-
-
-    if (add < 0) {
-      alert("Please enter a valid amount to add.");
+    if (isNaN(amountToAdd) || amountToAdd <= 0) {
+      alert("Please enter a valid positive amount to add.");
       return;
     }
+
+    let newBalance = 0;
+    if (selected === 'Balance') {
+      newBalance = parseFloat(user.balance) + amountToAdd;
+    } else if (selected === 'Deposit') {
+      newBalance = parseFloat(user.deposit) + amountToAdd;
+    }
+
+    const data = selected === 'Balance' ? { balance: newBalance } : { deposit: newBalance };
 
     setLoading(true);
     try {
@@ -92,41 +86,47 @@ function UserDetails() {
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
       if (response.ok) {
-        alert('Balance Added successfully!');
+        alert('Balance added successfully!');
+        fetchUserData(); // Refresh user data
+      } else {
+        const result = await response.json();
+        throw new Error(result.message || 'Failed to add balance.');
       }
     } catch (error) {
       console.error('Error Adding Balance:', error);
-      alert('Failed to Add Balance.');
+      alert('Failed to add balance.');
     } finally {
       setLoading(false);
       closeModal();
-      fetchUserData();
     }
   };
 
 
   const handleDeductBalance = async () => {
+    const amountToDeduct = parseFloat(deduct);
 
-    let newBalance = 0;
-
-    if (selected === 'Balance') {
-      newBalance = await parseFloat(user.balance) - parseFloat(deduct);
-    } else if (selected === 'Deposit') {
-      newBalance = await parseFloat(user.deposit) - parseFloat(deduct);
-    }
-    let data = {};
-    if (selected === 'Balance') {
-      data = { balance: newBalance, }
-    } else if (selected === 'Deposit') {
-      data = { deposit: newBalance, }
-    }
-
-    if (deduct < 0) {
-      alert("Please enter a valid amount to add.");
+    if (isNaN(amountToDeduct) || amountToDeduct <= 0) {
+      alert("Please enter a valid positive amount to deduct.");
       return;
     }
+
+    let newBalance = 0;
+    if (selected === 'Balance') {
+      if (amountToDeduct > parseFloat(user.balance)) {
+        alert("Insufficient balance to deduct.");
+        return;
+      }
+      newBalance = parseFloat(user.balance) - amountToDeduct;
+    } else if (selected === 'Deposit') {
+      if (amountToDeduct > parseFloat(user.deposit)) {
+        alert("Insufficient deposit to deduct.");
+        return;
+      }
+      newBalance = parseFloat(user.deposit) - amountToDeduct;
+    }
+
+    const data = selected === 'Balance' ? { balance: newBalance } : { deposit: newBalance };
 
     setLoading(true);
     try {
@@ -138,18 +138,19 @@ function UserDetails() {
         body: JSON.stringify(data),
       });
 
-      const result = await response.json();
       if (response.ok) {
-        alert('Balance Deduct successfully!');
-
+        alert('Balance deducted successfully!');
+        fetchUserData(); // Refresh user data
+      } else {
+        const result = await response.json();
+        throw new Error(result.message || 'Failed to deduct balance.');
       }
     } catch (error) {
-      console.error('Error Dedut Balance:', error);
-      alert('Failed to Dedut Balance.');
+      console.error('Error Deducting Balance:', error);
+      alert('Failed to deduct balance.');
     } finally {
       setLoading(false);
       closeModal();
-      fetchUserData();
     }
   };
 
