@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { BaseUrl } from "../Assets/Data";
 import Modal from "../components/ModalShow";
 import LoadingSpinner from "../components/LoadingSpinner";
+import { useNavigate } from "react-router-dom";
 
 export default function TotalWithdraw() {
+    const navigate = useNavigate();
     const [screenshots, setScreenshots] = useState([]);
     const [loading, setLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -171,6 +173,12 @@ export default function TotalWithdraw() {
                                 Amount: {userDetail.amount}
                             </span>
                         </div>
+                        <button
+                            onClick={() => setIsModalOpen(false)}
+                            className="bg-gray-500 text-white px-4 py-2 rounded mt-4"
+                        >
+                            Check Balance
+                        </button>
                         <button
                             onClick={() => setIsModalOpen(false)}
                             className="bg-gray-500 text-white px-4 py-2 rounded mt-4"

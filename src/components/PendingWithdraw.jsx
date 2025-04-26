@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { BaseUrl } from "../Assets/Data";
 import Modal from "../components/ModalShow";
 import LoadingSpinner from "../components/LoadingSpinner";
+import { useNavigate } from "react-router-dom";
 
 export default function PendingWithdraw() {
+    const navigate = useNavigate();
     const [screenshots, setScreenshots] = useState([]);
     const [loading, setLoading] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -229,6 +231,11 @@ export default function PendingWithdraw() {
                                 className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
                             >
                                 Reject
+                            </button> <button
+                                onClick={() => navigate(`/user-detail/${userDetail.sender}`)}
+                                className="bg-orange-500 text-white px-4 py-2 rounded hover:bg-red-600 transition"
+                            >
+                                Balance
                             </button>
                         </div>
                         <button
