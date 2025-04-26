@@ -160,11 +160,11 @@ export default function Withdraw() {
             return timeDiffHours < 24;
         });
 
-        if (recentWithdrawals.length >= 2) {
-            alert('You can only withdraw twice every 24 hours. Please try again later.');
-            setLoading(false);
-            return;
-        }
+        // if (recentWithdrawals.length >= 2) {
+        //     alert('You can only withdraw twice every 24 hours. Please try again later.');
+        //     setLoading(false);
+        //     return;
+        // }
 
         if (withdrawAmount > availableBalance) {
             alert('Withdraw amount exceeds available balance');
@@ -237,7 +237,7 @@ export default function Withdraw() {
             <h2 className="text-[28px] font-bold">Total Balance</h2>
             <div className="flex flex-row items-center justify-between">
                 <h3 className="text-[#347928] font-bold text-[28px] mt-2">
-                    PKR: {showBalance ? availableBalance : '****'}
+                    PKR: {showBalance ? availableBalance.toFixed(2) : '****'}
                 </h3>
                 <button onClick={toggleBalanceVisibility} className="ml-2">
                     <FontAwesomeIcon
