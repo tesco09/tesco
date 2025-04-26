@@ -120,11 +120,11 @@ export default function ApprovedWithdraw() {
                                         </p>
                                         <p className="text-sm font-medium">
                                             <strong>Status:</strong>{" "}
-                                            {user.verify
-                                                ? 'Verified'
+                                            {user.pending && !user.scam
+                                                ? 'Pending'
                                                 : user.scam
                                                     ? 'Rejected'
-                                                    : 'Pending'}
+                                                    : 'Verified'}
                                         </p>
                                         <p className="text-sm font-medium">
                                             <strong>Date:</strong>{" "}

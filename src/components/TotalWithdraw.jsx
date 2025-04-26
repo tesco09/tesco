@@ -120,11 +120,11 @@ export default function TotalWithdraw() {
                                         </p>
                                         <p className="text-sm font-medium">
                                             <strong>Status:</strong>{" "}
-                                            {user.verify
-                                                ? 'Verified'
-                                                : user.scam
-                                                    ? 'Rejected'
-                                                    : 'Pending'}
+                                            {user.pending && !user.scam
+                                                        ? 'Pending'
+                                                        : user.scam
+                                                            ? 'Rejected'
+                                                            : 'Verified'}
                                         </p>
                                         <p className="text-sm font-medium">
                                             <strong>Date:</strong>{" "}
@@ -173,12 +173,6 @@ export default function TotalWithdraw() {
                                 Amount: {userDetail.amount}
                             </span>
                         </div>
-                        <button
-                            onClick={() => setIsModalOpen(false)}
-                            className="bg-gray-500 text-white px-4 py-2 rounded mt-4"
-                        >
-                            Check Balance
-                        </button>
                         <button
                             onClick={() => setIsModalOpen(false)}
                             className="bg-gray-500 text-white px-4 py-2 rounded mt-4"
