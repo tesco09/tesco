@@ -160,11 +160,11 @@ export default function Withdraw() {
             return timeDiffHours < 24;
         });
 
-        // if (recentWithdrawals.length >= 2) {
-        //     alert('You can only withdraw twice every 24 hours. Please try again later.');
-        //     setLoading(false);
-        //     return;
-        // }
+        if (recentWithdrawals.length >= 2) {
+            alert('You can only withdraw twice every 24 hours. Please try again later.');
+            setLoading(false);
+            return;
+        }
 
         if (withdrawAmount > availableBalance) {
             alert('Withdraw amount exceeds available balance');
