@@ -470,7 +470,7 @@ function AdminPanel() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-8 mt-2">
                     <div className="p-4 border bg-green-600 rounded-md flex flex-col items-center">
                         <span className="text-24px font-semibold text-white">Today User join: </span>
-                        <span className="text-24px font-bold text-white">{(todayData?.totalUser)?.toFixed(2)}</span>
+                        <span className="text-24px font-bold text-white">{todayData?.totalUser}</span>
                     </div>
                     <div className="p-4 border bg-green-600 rounded-md flex flex-col items-center">
                         <span className="text-24px font-semibold text-white">Today Deposits: </span>
