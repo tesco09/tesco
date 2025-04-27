@@ -192,21 +192,21 @@ function Home() {
                         <div className='flex flex-row items-center justify-between w-full border rounded-md p-4 mt-4'>
                             <div className='flex flex-col items-center justify-center w-[50%]'>
                                 <div className='flex flex-col items-center'>
-                                    <span className='text-[14px] font-bold text-[#347928]'>{userData?.totalDeposit}</span>
+                                    <span className='text-[14px] font-bold text-[#347928]'>{(userData?.totalDeposit)?.toFixed(2)}</span>
                                     <span className='text-[12px] font-bold text-black'>Total Deposit</span>
                                 </div>
                                 <div className='flex flex-col items-center'>
-                                    <span className='text-[14px] font-bold text-[#347928]'>{userData?.totalInvest}</span>
+                                    <span className='text-[14px] font-bold text-[#347928]'>{(userData?.totalInvest)?.toFixed(2)}</span>
                                     <span className='text-[12px] font-bold text-black'>Total Invest</span>
                                 </div>
                             </div>
                             <div className='flex flex-col items-center justify-center w-[50%]'>
                                 <div className='flex flex-col items-center'>
-                                    <span className='text-[14px] font-bold text-[#347928]'>{userData?.deposit}</span>
+                                    <span className='text-[14px] font-bold text-[#347928]'>{(userData?.deposit)?.toFixed(2)}</span>
                                     <span className='text-[12px] font-bold text-black'>Deposit Balance</span>
                                 </div>
                                 <div className='flex flex-col items-center'>
-                                    <span className='text-[14px] font-bold text-[#347928]'>{userData?.totalWithdraw}</span>
+                                    <span className='text-[14px] font-bold text-[#347928]'>{(userData?.totalWithdraw)?.toFixed(2)}</span>
                                     <span className='text-[12px] font-bold text-black'>Total Withdraw</span>
                                 </div>
                             </div>

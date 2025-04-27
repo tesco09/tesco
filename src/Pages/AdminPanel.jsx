@@ -58,6 +58,7 @@ function AdminPanel() {
     const [loading, setLoading] = useState(false);
     const [sidebarOpen, setSidebarOpen] = useState(false);
     const [selectedTab, setSelectedTab] = useState("Dashboard");
+    const [todayData, setTodayData] = useState({});
 
     useEffect(() => {
         fetchDashboardData();
@@ -79,7 +80,9 @@ function AdminPanel() {
             const totalDepositResponse = await fetch(`${BaseUrl}/total-deposit`);
             const notificationResponse = await fetch(`${BaseUrl}/notifications/receiver/Admin`);
             const withdrawChargesResponse = await fetch(`${BaseUrl}/withdraw-charges`);
+            const todayResponse = await fetch(`${BaseUrl}/admin-today`);
 
+            const todayJson = await todayResponse.json();
             const withdrawCharges = await withdrawChargesResponse.json();
             const notifications = await notificationResponse.json();
             const totalWithdraw = await totalWithdrawResponse.json();
@@ -92,6 +95,7 @@ function AdminPanel() {
             const withdrawalsData = await withdrawalsResponse.json();
             const pendingWithdrawals = withdrawalsData.filter(item => item.pending === true && item.scam === false).length;
             // console.log('usersData:', depositsData);
+            setTodayData(todayJson);
 
             setDashboardData({
                 totalUsers: usersData.length,
@@ -463,6 +467,20 @@ function AdminPanel() {
         return (
             <div className="dashboard md:w-[80%] md:ml-[20%]">
                 {/* Dashboard Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-8 mt-2">
+                    <div className="p-4 border bg-green-600 rounded-md flex flex-col items-center">
+                        <span className="text-24px font-semibold text-white">Today User join: </span>
+                        <span className="text-24px font-bold text-white">{(todayData?.totalUser)?.toFixed(2)}</span>
+                    </div>
+                    <div className="p-4 border bg-green-600 rounded-md flex flex-col items-center">
+                        <span className="text-24px font-semibold text-white">Today Deposits: </span>
+                        <span className="text-24px font-bold text-white">{(todayData?.totdayDeposit)?.toFixed(2)}</span>
+                    </div>
+                    <div className="p-4 border bg-green-600 rounded-md flex flex-col items-center">
+                        <span className="text-24px font-semibold text-white">Today Withdrawals : </span>
+                        <span className="text-24px font-bold text-white">{(todayData?.totalWithdraw)?.toFixed(2)}</span>
+                    </div>
+                </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                     <DashboardCard
                         icon={faUsers}
